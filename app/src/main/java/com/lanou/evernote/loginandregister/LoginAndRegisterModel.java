@@ -14,10 +14,7 @@ public class LoginAndRegisterModel implements LoginAndRegistterContract.Model {
     private LoginAndRegistterContract.Presenter presenter;
 
 
-
-
-
-    public LoginAndRegisterModel(){
+    public LoginAndRegisterModel() {
 
 
     }
@@ -32,7 +29,7 @@ public class LoginAndRegisterModel implements LoginAndRegistterContract.Model {
         bmobUser.login(MyApplication.getContext(), new SaveListener() {
             @Override
             public void onSuccess() {
-               presenter.loginSuccess();
+                presenter.loginSuccess();
             }
 
             @Override
@@ -40,8 +37,6 @@ public class LoginAndRegisterModel implements LoginAndRegistterContract.Model {
                 presenter.loginError("登录失败");
             }
         });
-
-
 
 
     }
@@ -55,12 +50,12 @@ public class LoginAndRegisterModel implements LoginAndRegistterContract.Model {
         bmobUser.signUp(MyApplication.getContext(), new SaveListener() {
             @Override
             public void onSuccess() {
-
+                presenter.registerSuccess();
             }
 
             @Override
             public void onFailure(int i, String s) {
-                presenter.loginError("该账号已经存在");
+                presenter.registerError("该账号已经存在");
             }
         });
 
@@ -69,6 +64,6 @@ public class LoginAndRegisterModel implements LoginAndRegistterContract.Model {
 
     @Override
     public void setPresenter(LoginAndRegistterContract.Presenter presenter) {
-
+        this.presenter = presenter;
     }
 }
