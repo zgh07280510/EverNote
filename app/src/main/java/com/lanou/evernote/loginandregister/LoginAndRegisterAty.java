@@ -36,9 +36,6 @@ public class LoginAndRegisterAty extends BaseActivity {
     }
 
 
-
-
-
     @Override
     protected void initData() {
 
