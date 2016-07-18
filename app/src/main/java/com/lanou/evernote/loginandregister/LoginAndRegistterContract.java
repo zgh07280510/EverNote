@@ -24,6 +24,7 @@ public interface LoginAndRegistterContract {
     interface Presenter extends BasePresenter {
         void login(String userName, String password);
 
+
         void register(String userName, String password);
 
         void loginSuccess();

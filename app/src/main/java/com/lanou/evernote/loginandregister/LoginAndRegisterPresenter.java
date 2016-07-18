@@ -63,7 +63,7 @@ public class LoginAndRegisterPresenter implements LoginAndRegistterContract.Pres
     //注册失败
     @Override
     public void registerError(String errorMessage) {
-        view.loginError(errorMessage);
+                view.loginError(errorMessage);
     }
 
     @Override

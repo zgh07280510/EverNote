@@ -13,10 +13,7 @@ import cn.bmob.v3.listener.SaveListener;
 public class LoginAndRegisterModel implements LoginAndRegistterContract.Model {
     private LoginAndRegistterContract.Presenter presenter;
 
-
     public LoginAndRegisterModel() {
-
-
     }
 
 
