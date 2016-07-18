@@ -20,6 +20,12 @@ public class LoginAndRegisterAty extends BaseActivity {
     }
 
     @Override
+    protected void initView() {
+
+    }
+
+
+    @Override
     protected void initData() {
         Bmob.initialize(this,"3e8e0dce858ecb9845dcf7eceb687563");
         LoginAndRegistterContract.Model model = new LoginAndRegisterModel();
