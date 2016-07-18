@@ -29,7 +29,6 @@ public class LoginAndRegisterAty extends BaseActivity {
 
     @Override
     protected void initView() {
-
         loginTabLayout=bindView(R.id.login_register_tabLayout);
        loginViewPager = bindView(R.id.login_register_viewPager);
 
