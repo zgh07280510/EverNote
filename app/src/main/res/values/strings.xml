@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">EverNote</string>
+    <string name="mail_address">电子邮箱</string>
+    <string name="password">密码</string>
+    <string name="show_password">显示密码</string>
+    <string name="start_use">开始使用印象笔记</string>
+    <string name="terms_of_service">服务条款</string>
+    <string name="privacy_policy">隐私条款</string>
+    <string name="user_name">用户名或电子邮箱</string>
+    <string name="login">登录</string>
+    <string name="password_forget">忘记密码</string>
 </resources>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+   <EditText
+       android:id="@+id/et_register_mail_address"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="@string/mail_address"
+       android:layout_marginLeft="@dimen/twenty_dp"
+       android:layout_marginRight="@dimen/twenty_dp"
+       android:layout_marginTop="@dimen/ten_dp"/>
+    <EditText
+        android:id="@+id/et_register_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:layout_marginLeft="@dimen/twenty_dp"
+        android:layout_marginRight="@dimen/twenty_dp"
+        android:layout_marginTop="@dimen/ten_dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/twenty_dp"
+        android:orientation="horizontal">
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_password"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_start_use"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorLoginTabLayout"
+        android:layout_gravity="center"
+        android:text="@string/start_use"
+        android:paddingLeft="@dimen/twenty_dp"
+        android:paddingRight="@dimen/twenty_dp"/>
+</LinearLayout>
