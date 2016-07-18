@@ -15,6 +15,10 @@ public interface LoginAndRegistterContract {
         void loginSuccess();
 
         void loginError(String ErrorMessage);
+
+        void registerSuccess();
+
+        void registerError(String ErrorMessage);
     }
 
     interface Presenter extends BasePresenter {
@@ -24,8 +28,11 @@ public interface LoginAndRegistterContract {
 
         void loginSuccess();
 
+        void registerSuccess();
+
         void loginError(String errorMessage);
 
+        void registerError(String errorMessage);
     }
 
     interface Model extends BaseModel<Presenter> {
