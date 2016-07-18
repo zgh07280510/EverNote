@@ -22,6 +22,7 @@ public class LoginAndRegisterAdapter extends FragmentPagerAdapter {
 
     public void setFragments(ArrayList<Fragment> fragments) {
         this.fragments = fragments;
+        notifyDataSetChanged();
     }
 
 

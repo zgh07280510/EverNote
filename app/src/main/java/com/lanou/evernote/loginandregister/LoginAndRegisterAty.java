@@ -29,8 +29,9 @@ public class LoginAndRegisterAty extends BaseActivity {
 
     @Override
     protected void initView() {
-        bindView(R.id.login_register_tabLayout);
-        bindView(R.id.login_register_viewPager);
+
+        loginTabLayout=bindView(R.id.login_register_tabLayout);
+       loginViewPager = bindView(R.id.login_register_viewPager);
 
 
     }
@@ -49,6 +50,9 @@ public class LoginAndRegisterAty extends BaseActivity {
 
         Bmob.initialize(this, "3e8e0dce858ecb9845dcf7eceb687563");
         LoginAndRegistterContract.Model model = new LoginAndRegisterModel();
+        RegisterFragment registerFragment = new RegisterFragment();
 
+        LoginAndRegistterContract.Presenter presenter = new LoginAndRegisterPresenter(model,registerFragment);
+        registerFragment.setPresenter(presenter);
     }
 }
