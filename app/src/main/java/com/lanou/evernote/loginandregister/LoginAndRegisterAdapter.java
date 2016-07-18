@@ -1,6 +1,8 @@
 package com.lanou.evernote.loginandregister;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 
@@ -9,17 +11,20 @@ import java.util.ArrayList;
 /**
  * Created by dllo on 16/7/18.
  */
-public class LoginAndRegisterAdapter extends PagerAdapter {
+public class LoginAndRegisterAdapter extends FragmentPagerAdapter {
     private ArrayList<Fragment> fragments;
     private String[] titles= {"创建账户","登录"};
 
-    public void setFragments(ArrayList<Fragment> fragments) {
-        this.fragments = fragments;
+    public LoginAndRegisterAdapter(FragmentManager fm) {
+        super(fm);
     }
 
-    public LoginAndRegisterAdapter(ArrayList<Fragment> fragments) {
+
+    public void setFragments(ArrayList<Fragment> fragments) {
         this.fragments = fragments;
+        notifyDataSetChanged();
     }
+
 
     @Override
     public int getCount() {
@@ -27,12 +32,12 @@ public class LoginAndRegisterAdapter extends PagerAdapter {
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return false;
+    public CharSequence getPageTitle(int position) {
+        return titles[position];
     }
 
     @Override
-    public CharSequence getPageTitle(int position) {
-        return titles[position];
+    public Fragment getItem(int position) {
+        return fragments.get(position);
     }
 }
