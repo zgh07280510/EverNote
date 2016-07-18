@@ -1,6 +1,6 @@
 package com.lanou.evernote.loginandregister;
 
-import android.widget.Toast;
+
 
 import com.lanou.evernote.base.MyApplication;
 
