@@ -25,7 +25,7 @@ public class LoginAndRegisterPresenter implements LoginAndRegistterContract.Pres
         if (userName == null
                 || password == null
                 || userName.length() * password.length() == 0) {
-            view.loginError("用户名或密码为空");
+            view.loginError("用户名或密码不能为空");
         } else {
             model.checkLoginFoNet(userName, password);
         }
@@ -33,17 +33,36 @@ public class LoginAndRegisterPresenter implements LoginAndRegistterContract.Pres
 
     @Override
     public void register(String userName, String password) {
-
+        if (userName == null
+                || password == null
+                || userName.length() * password.length() == 0) {
+            view.registerError("用户名或密码不能为空");
+        } else {
+            model.checkRegisterFoNet(userName, password);
+        }
     }
 
+    //登录成功
     @Override
     public void loginSuccess() {
         view.loginSuccess();
     }
 
+    //注册成功
+    @Override
+    public void registerSuccess() {
+        view.registerSuccess();
+    }
 
+    //登录失败
     @Override
     public void loginError(String errorMessage) {
+        view.loginError(errorMessage);
+    }
+
+    //注册失败
+    @Override
+    public void registerError(String errorMessage) {
         view.loginError(errorMessage);
     }
 
