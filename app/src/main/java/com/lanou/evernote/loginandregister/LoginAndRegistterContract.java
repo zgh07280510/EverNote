@@ -1,5 +1,7 @@
 package com.lanou.evernote.loginandregister;
 
+import android.content.Context;
+
 import com.lanou.evernote.base.BaseModel;
 import com.lanou.evernote.base.BasePresenter;
 import com.lanou.evernote.base.BaseView;
@@ -8,6 +10,7 @@ import com.lanou.evernote.base.BaseView;
  * Created by zouguohua on 16/7/18.
  */
 public interface LoginAndRegistterContract {
+
     interface View extends BaseView<Presenter> {
         void loginSuccess();
 
@@ -16,6 +19,8 @@ public interface LoginAndRegistterContract {
 
     interface Presenter extends BasePresenter {
         void login(String userName, String password);
+
+        void register(String userName, String password);
 
         void loginSuccess();
 
