@@ -27,7 +27,7 @@ public class LoginFragment extends BaseFragment implements LoginAndRegistterCont
                 presenter.register(userName, psw);
             }
         });
-        presenter.start();
+       // presenter.start();
     }
 
     @Override

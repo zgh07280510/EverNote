@@ -12,6 +12,7 @@ public class LoginAndRegisterPresenter implements LoginAndRegistterContract.Pres
     public LoginAndRegisterPresenter(LoginAndRegistterContract.Model model, LoginAndRegistterContract.View view) {
         this.model = model;
         this.view = view;
+        view.setPresenter(this);
     }
 
     /**
@@ -63,7 +64,7 @@ public class LoginAndRegisterPresenter implements LoginAndRegistterContract.Pres
     //注册失败
     @Override
     public void registerError(String errorMessage) {
-        view.loginError(errorMessage);
+                view.loginError(errorMessage);
     }
 
     @Override

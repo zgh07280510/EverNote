@@ -30,9 +30,8 @@ public class LoginAndRegisterAty extends BaseActivity {
 
     @Override
     protected void initView() {
-
-        loginTabLayout=bindView(R.id.login_register_tabLayout);
-       loginViewPager = bindView(R.id.login_register_viewPager);
+        loginTabLayout = bindView(R.id.login_register_tabLayout);
+        loginViewPager = bindView(R.id.login_register_viewPager);
 
 
     }
@@ -40,21 +39,20 @@ public class LoginAndRegisterAty extends BaseActivity {
 
     @Override
     protected void initData() {
+        Bmob.initialize(this, "3e8e0dce858ecb9845dcf7eceb687563");
+        LoginAndRegistterContract.Model model = new LoginAndRegisterModel();
+        RegisterFragment registerFragment = new RegisterFragment();
+        LoginAndRegistterContract.Presenter presenter = new LoginAndRegisterPresenter(model, registerFragment);
+        registerFragment.setPresenter(presenter);
 
         fragments = new ArrayList<>();
         fragments.add(new LoginFragment());
-        fragments.add(new RegisterFragment());
-        loginAndRegisterAdapter =  new LoginAndRegisterAdapter(getSupportFragmentManager());
+        fragments.add(registerFragment);
+        loginAndRegisterAdapter = new LoginAndRegisterAdapter(getSupportFragmentManager());
         loginAndRegisterAdapter.setFragments(fragments);
         loginViewPager.setAdapter(loginAndRegisterAdapter);
         loginTabLayout.setupWithViewPager(loginViewPager);
         loginTabLayout.setSelectedTabIndicatorColor(Color.TRANSPARENT);
 
-        Bmob.initialize(this, "3e8e0dce858ecb9845dcf7eceb687563");
-        LoginAndRegistterContract.Model model = new LoginAndRegisterModel();
-        RegisterFragment registerFragment = new RegisterFragment();
-
-        LoginAndRegistterContract.Presenter presenter = new LoginAndRegisterPresenter(model,registerFragment);
-        registerFragment.setPresenter(presenter);
     }
 }
