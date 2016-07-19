@@ -54,7 +54,7 @@ public class LoginAndRegisterAty extends BaseActivity {
         loginAndRegisterAdapter.setFragments(fragments);
         loginViewPager.setAdapter(loginAndRegisterAdapter);
         loginTabLayout.setupWithViewPager(loginViewPager);
-
+   
 
 
     }
