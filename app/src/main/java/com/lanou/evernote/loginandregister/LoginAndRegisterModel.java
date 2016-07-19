@@ -2,6 +2,8 @@ package com.lanou.evernote.loginandregister;
 
 
 
+import android.util.Log;
+
 import com.lanou.evernote.base.MyApplication;
 
 import cn.bmob.v3.BmobUser;
@@ -13,9 +15,6 @@ import cn.bmob.v3.listener.SaveListener;
 public class LoginAndRegisterModel implements LoginAndRegistterContract.Model {
     private LoginAndRegistterContract.Presenter presenter;
 
-    public LoginAndRegisterModel() {
-    }
-
 
     @Override
     public void checkLoginFoNet(String userName, String password) {
@@ -26,11 +25,13 @@ public class LoginAndRegisterModel implements LoginAndRegistterContract.Model {
         bmobUser.login(MyApplication.getContext(), new SaveListener() {
             @Override
             public void onSuccess() {
+
                 presenter.loginSuccess();
             }
 
             @Override
             public void onFailure(int i, String s) {
+
                 presenter.loginError("登录失败");
             }
         });
@@ -40,6 +41,7 @@ public class LoginAndRegisterModel implements LoginAndRegistterContract.Model {
 
     @Override
     public void checkRegisterFoNet(String userName, String password) {
+        Log.d("8888758585", userName);
         BmobUser bmobUser = BmobUser.getCurrentUser(MyApplication.getContext());
         bmobUser = new BmobUser();
         bmobUser.setUsername(userName);

@@ -12,11 +12,21 @@ import com.lanou.evernote.base.MyApplication;
 /**
  * Created by dllo on 16/7/18.
  */
-public class LoginFragment extends BaseFragment implements  LoginAndRegistterContract.LoginView {
+public class LoginFragment extends BaseFragment implements LoginAndRegistterContract.View {
     private Button btnLogin;
     private EditText etUserName, etLoginPassword;
     private LoginAndRegistterContract.Presenter presenter;
+    @Override
+    protected int setLayout() {
+        return R.layout.fragment_login;
+    }
 
+    @Override
+    protected void initView(View view) {
+        btnLogin = (Button) view.findViewById(R.id.btn_login);
+        etUserName = (EditText) view.findViewById(R.id.et_user_name_mail_address);
+        etLoginPassword = (EditText) view.findViewById(R.id.et_login_password);
+    }
     @Override
     protected void initData() {
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -30,17 +40,7 @@ public class LoginFragment extends BaseFragment implements  LoginAndRegistterCon
         presenter.start();
     }
 
-    @Override
-    protected void initView(View view) {
-        btnLogin = (Button) view.findViewById(R.id.btn_login);
-        etUserName = (EditText) view.findViewById(R.id.et_user_name_mail_address);
-        etLoginPassword = (EditText) view.findViewById(R.id.et_login_password);
-    }
 
-    @Override
-    protected int setLayout() {
-        return R.layout.fragment_login;
-    }
 
     @Override
     public void loginSuccess() {
@@ -51,8 +51,15 @@ public class LoginFragment extends BaseFragment implements  LoginAndRegistterCon
     public void loginError(String ErrorMessage) {
     }
 
+    @Override
+    public void registerSuccess() {
+        Toast.makeText(MyApplication.getContext(), "登录失败", Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public void registerError(String ErrorMessage) {
 
+    }
 
     @Override
     public void setPresenter(LoginAndRegistterContract.Presenter presenter) {

@@ -1,5 +1,6 @@
 package com.lanou.evernote.loginandregister;
 
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,24 +13,21 @@ import com.lanou.evernote.base.MyApplication;
 /**
  * Created by dllo on 16/7/18.
  */
-public class RegisterFragment extends BaseFragment implements LoginAndRegistterContract.RegisterView {
+public class RegisterFragment extends BaseFragment implements LoginAndRegistterContract.View {
     private Button btnStartUse;
     private EditText etMailAddress, etRegisterPassword;
     private LoginAndRegistterContract.Presenter presenter;
 
     @Override
-    protected void initData() {
-        btnStartUse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String userName = etMailAddress.getText().toString();
-                String psw = etRegisterPassword.getText().toString();
-                presenter.register(userName, psw);
-            }
-        });
-       presenter.start();
+    protected int setLayout() {
+        return R.layout.fragment_register;
     }
 
+
+    @Override
+    public void setPresenter(LoginAndRegistterContract.Presenter presenter) {
+        this.presenter = presenter;
+    }
     @Override
     protected void initView(View view) {
         btnStartUse = (Button) view.findViewById(R.id.btn_start_use);
@@ -38,11 +36,31 @@ public class RegisterFragment extends BaseFragment implements LoginAndRegistterC
     }
 
     @Override
-    protected int setLayout() {
-        return R.layout.fragment_register;
+    protected void initData() {
+        btnStartUse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String userName = etMailAddress.getText().toString();
+                String psw = etRegisterPassword.getText().toString();
+<<<<<<< HEAD
+                presenter.register(userName, psw);
+=======
+                presenter.login(userName, psw);
+
+>>>>>>> 6954cf50347469e8b1895d30391fd014bd8ea2bb
+            }
+        });
+        presenter.start();
     }
 
 
+    @Override
+    public void loginSuccess() {
+    }
+
+    @Override
+    public void loginError(String ErrorMessage) {
+    }
 
     @Override
     public void registerSuccess() {
@@ -52,12 +70,9 @@ public class RegisterFragment extends BaseFragment implements LoginAndRegistterC
 
     @Override
     public void registerError(String ErrorMessage) {
-    Toast.makeText(MyApplication.getContext(), "注册失败", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MyApplication.getContext(), "注册失败", Toast.LENGTH_SHORT).show();
 
     }
 
-    @Override
-    public void setPresenter(LoginAndRegistterContract.Presenter presenter) {
-     this.presenter = presenter;
-    }
+
 }

@@ -5,6 +5,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
 import com.lanou.evernote.R;
 import com.lanou.evernote.base.BaseActivity;
@@ -30,6 +31,7 @@ public class LoginAndRegisterAty extends BaseActivity {
 
     @Override
     protected void initView() {
+
         loginTabLayout = bindView(R.id.login_register_tabLayout);
         loginViewPager = bindView(R.id.login_register_viewPager);
 
@@ -39,15 +41,19 @@ public class LoginAndRegisterAty extends BaseActivity {
 
     @Override
     protected void initData() {
-        Bmob.initialize(this, "3e8e0dce858ecb9845dcf7eceb687563");
-        LoginAndRegistterContract.Model model = new LoginAndRegisterModel();
-        RegisterFragment registerFragment = new RegisterFragment();
-        LoginFragment loginFragment = new LoginFragment();
 
+<<<<<<< HEAD
         LoginAndRegistterContract.Presenter presenter = new LoginAndRegisterPresenter(loginFragment,model,registerFragment);
         registerFragment.setPresenter(presenter);
         loginFragment.setPresenter(presenter);
         fragments = new ArrayList<>();
+=======
+        fragments = new ArrayList<>();
+
+        //fragments.add(new LoginFragment());
+        RegisterFragment registerFragment = new RegisterFragment();
+
+>>>>>>> 6954cf50347469e8b1895d30391fd014bd8ea2bb
         fragments.add(registerFragment);
         fragments.add(loginFragment);
         loginAndRegisterAdapter = new LoginAndRegisterAdapter(getSupportFragmentManager());
@@ -56,6 +62,12 @@ public class LoginAndRegisterAty extends BaseActivity {
         loginTabLayout.setupWithViewPager(loginViewPager);
    
 
+
+
+        LoginAndRegistterContract.Model model = new LoginAndRegisterModel();
+
+        LoginAndRegisterPresenter presenter = new LoginAndRegisterPresenter(model, registerFragment);
+        registerFragment.setPresenter(presenter);
 
     }
 }
