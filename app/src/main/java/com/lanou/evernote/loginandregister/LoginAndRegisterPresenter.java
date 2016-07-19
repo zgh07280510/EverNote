@@ -12,6 +12,7 @@ public class LoginAndRegisterPresenter implements LoginAndRegistterContract.Pres
     public LoginAndRegisterPresenter(LoginAndRegistterContract.Model model, LoginAndRegistterContract.View view) {
         this.model = model;
         this.view = view;
+        view.setPresenter(this);
     }
 
     /**
