@@ -12,7 +12,7 @@ import com.lanou.evernote.base.MyApplication;
 /**
  * Created by dllo on 16/7/18.
  */
-public class RegisterFragment extends BaseFragment implements LoginAndRegistterContract.View {
+public class RegisterFragment extends BaseFragment implements LoginAndRegistterContract.RegisterView {
     private Button btnStartUse;
     private EditText etMailAddress, etRegisterPassword;
     private LoginAndRegistterContract.Presenter presenter;
@@ -42,13 +42,7 @@ public class RegisterFragment extends BaseFragment implements LoginAndRegistterC
         return R.layout.fragment_register;
     }
 
-    @Override
-    public void loginSuccess() {
-    }
 
-    @Override
-    public void loginError(String ErrorMessage) {
-    }
 
     @Override
     public void registerSuccess() {

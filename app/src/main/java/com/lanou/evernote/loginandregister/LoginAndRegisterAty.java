@@ -41,11 +41,12 @@ public class LoginAndRegisterAty extends BaseActivity {
         Bmob.initialize(this, "3e8e0dce858ecb9845dcf7eceb687563");
         LoginAndRegistterContract.Model model = new LoginAndRegisterModel();
         RegisterFragment registerFragment = new RegisterFragment();
-        LoginAndRegistterContract.Presenter presenter = new LoginAndRegisterPresenter(model, registerFragment);
-        registerFragment.setPresenter(presenter);
+        LoginFragment loginFragment = new LoginFragment();
 
+        LoginAndRegistterContract.Presenter presenter = new LoginAndRegisterPresenter(loginFragment,model,registerFragment);
+        registerFragment.setPresenter(presenter);
         fragments = new ArrayList<>();
-        fragments.add(new LoginFragment());
+        fragments.add(loginFragment);
         fragments.add(registerFragment);
         loginAndRegisterAdapter = new LoginAndRegisterAdapter(getSupportFragmentManager());
         loginAndRegisterAdapter.setFragments(fragments);
