@@ -13,7 +13,9 @@
             android:id="@+id/note_book"
             android:icon="@mipmap/ic_launcher"
             android:title="笔记本" />
-        <item/>
+        <item
+            android:title="设备"
+            android:visible="false"/>
         <item
             android:id="@+id/search_notes"
             android:icon="@mipmap/ic_launcher"
