@@ -13,7 +13,7 @@ import com.lanou.evernote.base.MyApplication;
 /**
  * Created by dllo on 16/7/18.
  */
-public class RegisterFragment extends BaseFragment implements LoginAndRegistterContract.View {
+public class RegisterFragment extends BaseFragment implements LoginAndRegistterContract.RegView {
     private Button btnStartUse;
     private EditText etMailAddress, etRegisterPassword;
     private LoginAndRegistterContract.Presenter presenter;
@@ -28,6 +28,7 @@ public class RegisterFragment extends BaseFragment implements LoginAndRegistterC
     public void setPresenter(LoginAndRegistterContract.Presenter presenter) {
         this.presenter = presenter;
     }
+
     @Override
     protected void initView(View view) {
         btnStartUse = (Button) view.findViewById(R.id.btn_start_use);
@@ -42,28 +43,24 @@ public class RegisterFragment extends BaseFragment implements LoginAndRegistterC
             public void onClick(View v) {
                 String userName = etMailAddress.getText().toString();
                 String psw = etRegisterPassword.getText().toString();
+<<<<<<< HEAD
 
                 presenter.register(userName, psw);
 
 
 
+=======
+                presenter.register(userName, psw);
+>>>>>>> b462bda6484a62f6bd52cb3e2f327b8b95013d54
             }
         });
         presenter.start();
     }
 
 
-    @Override
-    public void loginSuccess() {
-    }
-
-    @Override
-    public void loginError(String ErrorMessage) {
-    }
 
     @Override
     public void registerSuccess() {
-
         Toast.makeText(MyApplication.getContext(), "注册成功", Toast.LENGTH_SHORT).show();
     }
 
