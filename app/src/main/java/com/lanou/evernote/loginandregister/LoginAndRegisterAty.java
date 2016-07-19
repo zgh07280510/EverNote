@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.lanou.evernote.R;
 import com.lanou.evernote.base.BaseActivity;
@@ -32,6 +33,7 @@ public class LoginAndRegisterAty extends BaseActivity {
     private ArrayList<Fragment> fragments;
     private ImageViewAction imageViewAction;
     private ImageView ivHead;
+    private long time = 0;
 
     @Override
     public int setLayout() {
@@ -87,8 +89,19 @@ public class LoginAndRegisterAty extends BaseActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK){
+        if (keyCode == KeyEvent.KEYCODE_BACK&&ivHead.getVisibility() == View.GONE){
             ivHead.setVisibility(View.VISIBLE);
+        }else if(ivHead.getVisibility() == View.VISIBLE){
+            if (System.currentTimeMillis()-time>2000){
+                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                //将系统时间赋值给exitTime
+                time=System.currentTimeMillis();
+            }
+            //否则退出
+            else{
+                finish();
+                System.exit(0);
+            }
         }
         return false;
     }
