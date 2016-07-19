@@ -16,7 +16,17 @@ public class LoginFragment extends BaseFragment implements LoginAndRegistterCont
     private Button btnLogin;
     private EditText etUserName, etLoginPassword;
     private LoginAndRegistterContract.Presenter presenter;
+    @Override
+    protected int setLayout() {
+        return R.layout.fragment_login;
+    }
 
+    @Override
+    protected void initView(View view) {
+        btnLogin = (Button) view.findViewById(R.id.btn_login);
+        etUserName = (EditText) view.findViewById(R.id.et_user_name_mail_address);
+        etLoginPassword = (EditText) view.findViewById(R.id.et_login_password);
+    }
     @Override
     protected void initData() {
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -30,17 +40,7 @@ public class LoginFragment extends BaseFragment implements LoginAndRegistterCont
         presenter.start();
     }
 
-    @Override
-    protected void initView(View view) {
-        btnLogin = (Button) view.findViewById(R.id.btn_login);
-        etUserName = (EditText) view.findViewById(R.id.et_user_name_mail_address);
-        etLoginPassword = (EditText) view.findViewById(R.id.et_login_password);
-    }
 
-    @Override
-    protected int setLayout() {
-        return R.layout.fragment_login;
-    }
 
     @Override
     public void loginSuccess() {

@@ -1,5 +1,6 @@
 package com.lanou.evernote.loginandregister;
 
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,18 +19,15 @@ public class RegisterFragment extends BaseFragment implements LoginAndRegistterC
     private LoginAndRegistterContract.Presenter presenter;
 
     @Override
-    protected void initData() {
-        btnStartUse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String userName = etMailAddress.getText().toString();
-                String psw = etRegisterPassword.getText().toString();
-                presenter.login(userName, psw);
-            }
-        });
-       presenter.start();
+    protected int setLayout() {
+        return R.layout.fragment_register;
     }
 
+
+    @Override
+    public void setPresenter(LoginAndRegistterContract.Presenter presenter) {
+        this.presenter = presenter;
+    }
     @Override
     protected void initView(View view) {
         btnStartUse = (Button) view.findViewById(R.id.btn_start_use);
@@ -38,9 +36,19 @@ public class RegisterFragment extends BaseFragment implements LoginAndRegistterC
     }
 
     @Override
-    protected int setLayout() {
-        return R.layout.fragment_register;
+    protected void initData() {
+        btnStartUse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String userName = etMailAddress.getText().toString();
+                String psw = etRegisterPassword.getText().toString();
+                presenter.login(userName, psw);
+
+            }
+        });
+        presenter.start();
     }
+
 
     @Override
     public void loginSuccess() {
@@ -58,12 +66,9 @@ public class RegisterFragment extends BaseFragment implements LoginAndRegistterC
 
     @Override
     public void registerError(String ErrorMessage) {
-    Toast.makeText(MyApplication.getContext(), "注册失败", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MyApplication.getContext(), "注册失败", Toast.LENGTH_SHORT).show();
 
     }
 
-    @Override
-    public void setPresenter(LoginAndRegistterContract.Presenter presenter) {
-     this.presenter = presenter;
-    }
+
 }

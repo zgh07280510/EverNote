@@ -1,6 +1,7 @@
 package com.lanou.evernote.loginandregister;
 
 import android.content.Context;
+import android.util.Log;
 
 /**
  * Created by zouguohua on 16/7/18.
@@ -12,6 +13,13 @@ public class LoginAndRegisterPresenter implements LoginAndRegistterContract.Pres
     public LoginAndRegisterPresenter(LoginAndRegistterContract.Model model, LoginAndRegistterContract.View view) {
         this.model = model;
         this.view = view;
+        view.setPresenter(this
+        );
+    }
+
+    @Override
+    public void start() {
+        model.setPresenter(this);
     }
 
     /**
@@ -22,6 +30,8 @@ public class LoginAndRegisterPresenter implements LoginAndRegistterContract.Pres
      */
     @Override
     public void login(String userName, String password) {
+
+        Log.d("LoginAndRegisterPresent", userName);
         if (userName == null
                 || password == null
                 || userName.length() * password.length() == 0) {
@@ -66,8 +76,5 @@ public class LoginAndRegisterPresenter implements LoginAndRegistterContract.Pres
         view.loginError(errorMessage);
     }
 
-    @Override
-    public void start() {
-        model.setPresenter(this);
-    }
+
 }
