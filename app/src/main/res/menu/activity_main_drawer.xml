@@ -14,26 +14,43 @@
             android:icon="@mipmap/ic_launcher"
             android:title="笔记本" />
         <item
+            android:title="设备"
+            android:visible="false"/>
+        <item
             android:id="@+id/search_notes"
             android:icon="@mipmap/ic_launcher"
             android:title="搜索印象笔记" />
         <item
             android:id="@+id/note_setting"
             android:icon="@mipmap/ic_launcher"
-            android:title="设置"/>
+            android:title="设置" />
+        <item
+
+            android:title=" " />
+        <item
+
+            android:title=" " />
+        <item
+
+            android:title=" " />
+
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/upgrade_data"
-                android:icon="@mipmap/ic_launcher"
-                android:title="升级账户" />
-            <item
-                android:id="@+id/last_synchronization"
-                android:icon="@mipmap/ic_launcher"
-                android:title="上次同步" />
-        </menu>
-    </item>
+
+    <group>
+        <item
+            android:id="@+id/upgrade_data"
+            android:icon="@mipmap/ic_launcher"
+            android:title="升级账户" />
+    </group>
+
+
+    <group>
+        <item
+            android:id="@+id/last_synchronization"
+            android:icon="@mipmap/ic_launcher"
+            android:title="上次同步" />
+    </group>
+
 
 </menu>
