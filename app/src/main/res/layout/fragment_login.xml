@@ -25,9 +25,8 @@
         android:hint="@string/password"
         android:layout_marginLeft="@dimen/twenty_dp"
         android:layout_marginRight="@dimen/twenty_dp"
-
         android:textColorLink="@color/colorLoginTabLayout"
-        android:inputType="numberPassword"/>
+       android:inputType="textPassword"/>
     <LinearLayout
         android:id="@+id/ll_login_show"
         android:layout_width="wrap_content"
@@ -37,6 +36,7 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/cb_login"
             />
         <TextView
             android:layout_width="wrap_content"
