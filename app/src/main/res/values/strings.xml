@@ -11,5 +11,7 @@
     <string name="password_forget">忘记密码</string>
     <string name="search_note">搜索笔记</string>
 
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
     
 </resources>
