@@ -26,7 +26,9 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
 
     @Override
     public int setLayout() {
+
         return R.layout.activity_home_activtiy;
+
     }
 
     @Override
