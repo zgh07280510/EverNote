@@ -46,13 +46,13 @@ public class LoginAndRegisterAty extends BaseActivity {
         registerFragment.setPresenter(presenter);
 
         fragments = new ArrayList<>();
-        fragments.add(new LoginFragment());
         fragments.add(registerFragment);
+        fragments.add(new LoginFragment());
         loginAndRegisterAdapter = new LoginAndRegisterAdapter(getSupportFragmentManager());
         loginAndRegisterAdapter.setFragments(fragments);
         loginViewPager.setAdapter(loginAndRegisterAdapter);
         loginTabLayout.setupWithViewPager(loginViewPager);
-        loginTabLayout.setSelectedTabIndicatorColor(Color.TRANSPARENT);
+
 
     }
 }
