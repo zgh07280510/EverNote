@@ -7,14 +7,14 @@ import android.util.Log;
  * Created by zouguohua on 16/7/18.
  */
 public class LoginAndRegisterPresenter implements LoginAndRegistterContract.Presenter {
-    private LoginAndRegistterContract.View view;
+    private LoginAndRegistterContract.LogView logView;
+    private LoginAndRegistterContract.RegView regView;
     private LoginAndRegistterContract.Model model;
 
-    public LoginAndRegisterPresenter(LoginAndRegistterContract.Model model, LoginAndRegistterContract.View view) {
+    public LoginAndRegisterPresenter(LoginAndRegistterContract.LogView logView, LoginAndRegistterContract.Model model, LoginAndRegistterContract.RegView regView) {
+        this.logView = logView;
         this.model = model;
-        this.view = view;
-        view.setPresenter(this
-        );
+        this.regView = regView;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class LoginAndRegisterPresenter implements LoginAndRegistterContract.Pres
         if (userName == null
                 || password == null
                 || userName.length() * password.length() == 0) {
-            view.loginError("用户名或密码不能为空");
+            logView.loginError("用户名或密码不能为空");
         } else {
             model.checkLoginFoNet(userName, password);
         }
@@ -46,7 +46,7 @@ public class LoginAndRegisterPresenter implements LoginAndRegistterContract.Pres
         if (userName == null
                 || password == null
                 || userName.length() * password.length() == 0) {
-            view.registerError("用户名或密码不能为空");
+            regView.registerError("用户名或密码不能为空");
         } else {
             model.checkRegisterFoNet(userName, password);
         }
@@ -55,25 +55,25 @@ public class LoginAndRegisterPresenter implements LoginAndRegistterContract.Pres
     //登录成功
     @Override
     public void loginSuccess() {
-        view.loginSuccess();
+        logView.loginSuccess();
     }
 
     //注册成功
     @Override
     public void registerSuccess() {
-        view.registerSuccess();
+        regView.registerSuccess();
     }
 
     //登录失败
     @Override
     public void loginError(String errorMessage) {
-        view.loginError(errorMessage);
+        logView.loginError(errorMessage);
     }
 
     //注册失败
     @Override
     public void registerError(String errorMessage) {
-        view.loginError(errorMessage);
+        regView.registerError(errorMessage);
     }
 
 

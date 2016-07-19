@@ -41,33 +41,24 @@ public class LoginAndRegisterAty extends BaseActivity {
 
     @Override
     protected void initData() {
-
-<<<<<<< HEAD
-        LoginAndRegistterContract.Presenter presenter = new LoginAndRegisterPresenter(loginFragment,model,registerFragment);
-        registerFragment.setPresenter(presenter);
-        loginFragment.setPresenter(presenter);
-        fragments = new ArrayList<>();
-=======
-        fragments = new ArrayList<>();
-
-        //fragments.add(new LoginFragment());
+        LoginAndRegistterContract.Model model = new LoginAndRegisterModel();
         RegisterFragment registerFragment = new RegisterFragment();
+        LoginFragment loginFragment = new LoginFragment();
+        LoginAndRegistterContract.Presenter presenter = new LoginAndRegisterPresenter(loginFragment, model, registerFragment);
 
->>>>>>> 6954cf50347469e8b1895d30391fd014bd8ea2bb
+
+        fragments = new ArrayList<>();
+
         fragments.add(registerFragment);
         fragments.add(loginFragment);
         loginAndRegisterAdapter = new LoginAndRegisterAdapter(getSupportFragmentManager());
         loginAndRegisterAdapter.setFragments(fragments);
         loginViewPager.setAdapter(loginAndRegisterAdapter);
         loginTabLayout.setupWithViewPager(loginViewPager);
-   
 
-
-
-        LoginAndRegistterContract.Model model = new LoginAndRegisterModel();
-
-        LoginAndRegisterPresenter presenter = new LoginAndRegisterPresenter(model, registerFragment);
         registerFragment.setPresenter(presenter);
+        loginFragment.setPresenter(presenter);
+
 
     }
 }

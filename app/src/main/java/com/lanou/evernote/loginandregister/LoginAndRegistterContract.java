@@ -11,11 +11,13 @@ import com.lanou.evernote.base.BaseView;
  */
 public interface LoginAndRegistterContract {
 
-    interface View extends BaseView<Presenter> {
+    interface LogView extends BaseView<Presenter> {
         void loginSuccess();
 
         void loginError(String ErrorMessage);
+    }
 
+    interface RegView extends BaseView<Presenter> {
         void registerSuccess();
 
         void registerError(String ErrorMessage);
