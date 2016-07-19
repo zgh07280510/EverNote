@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/group_chat"
+            android:icon="@mipmap/ic_launcher"
+            android:title="工作群聊" />
+        <item
+            android:id="@+id/all_notes"
+            android:icon="@mipmap/ic_launcher"
+            android:title="所有笔记" />
+        <item
+            android:id="@+id/note_book"
+            android:icon="@mipmap/ic_launcher"
+            android:title="笔记本" />
+        <item
+            android:id="@+id/search_notes"
+            android:icon="@mipmap/ic_launcher"
+            android:title="搜索印象笔记" />
+        <item
+            android:id="@+id/note_setting"
+            android:icon="@mipmap/ic_launcher"
+            android:title="设置"/>
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/upgrade_data"
+                android:icon="@mipmap/ic_launcher"
+                android:title="升级账户" />
+            <item
+                android:id="@+id/last_synchronization"
+                android:icon="@mipmap/ic_launcher"
+                android:title="上次同步" />
+        </menu>
+    </item>
+
+</menu>

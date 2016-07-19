@@ -7,4 +7,10 @@
     <dimen name="twenty_dp">20dp</dimen>
     <dimen name="fifteen">15dp</dimen>
     <dimen name="five_dp">5dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">100dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

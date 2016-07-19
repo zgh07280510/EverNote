@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_choose_note"
+        android:orderInCategory="100"
+        android:title="选择笔记"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/add_to_screen"
+        android:orderInCategory="100"
+        android:title="添加到手机主屏"
+        />
+    <item
+        android:id="@+id/sort_ways"
+        android:orderInCategory="100"
+        android:title="排序方式"
+        />
+    <item
+        android:id="@+id/view_options"
+        android:orderInCategory="100"
+        android:title="查看选项"
+        />
+    <item
+        android:id="@+id/synchronize"
+        android:orderInCategory="100"
+        android:title="同步"
+        />
+    <item
+        android:id="@+id/setting"
+        android:orderInCategory="100"
+        android:title="设置"
+        />
+</menu>

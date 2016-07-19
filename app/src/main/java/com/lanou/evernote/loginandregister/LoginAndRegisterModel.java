@@ -32,7 +32,7 @@ public class LoginAndRegisterModel implements LoginAndRegistterContract.Model {
             @Override
             public void onFailure(int i, String s) {
 
-                presenter.loginError("登录失败");
+                presenter.loginError("账号或密码不正确");
             }
         });
 
@@ -41,7 +41,7 @@ public class LoginAndRegisterModel implements LoginAndRegistterContract.Model {
 
     @Override
     public void checkRegisterFoNet(String userName, String password) {
-        Log.d("8888758585", userName);
+
         BmobUser bmobUser = BmobUser.getCurrentUser(MyApplication.getContext());
         bmobUser = new BmobUser();
         bmobUser.setUsername(userName);
@@ -54,7 +54,7 @@ public class LoginAndRegisterModel implements LoginAndRegistterContract.Model {
 
             @Override
             public void onFailure(int i, String s) {
-                presenter.registerError("该账号已经存在");
+                presenter.registerError("该账号已经存在,请重新注册");
             }
         });
 

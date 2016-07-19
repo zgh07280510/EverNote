@@ -1,5 +1,6 @@
 package com.lanou.evernote.loginandregister;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.text.InputType;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import com.lanou.evernote.R;
 import com.lanou.evernote.base.BaseFragment;
 import com.lanou.evernote.base.MyApplication;
+import com.lanou.evernote.homepage.HomepageAty;
 
 
 /**
@@ -23,6 +25,15 @@ public class LoginFragment extends BaseFragment implements LoginAndRegistterCont
     private LoginAndRegistterContract.Presenter presenter;
     private LinearLayout llLoginShow;
     private CheckBox checkBox;
+    private ProgressDialog progressDialog;
+
+    private void showDialog(){
+        if (progressDialog == null){
+            progressDialog = ProgressDialog.show(getActivity(),"","请稍后",true,false);
+        }else {
+            progressDialog.show();
+        }
+    }
 
     @Override
     protected int setLayout() {
@@ -64,6 +75,7 @@ public class LoginFragment extends BaseFragment implements LoginAndRegistterCont
                 String userName = etUserName.getText().toString();
                 String psw = etLoginPassword.getText().toString();
                 presenter.login(userName, psw);
+                showDialog();
             }
         });
         presenter.start();
@@ -78,10 +90,14 @@ public class LoginFragment extends BaseFragment implements LoginAndRegistterCont
     @Override
     public void loginSuccess() {
         Toast.makeText(MyApplication.getContext(), "登录成功", Toast.LENGTH_SHORT).show();
+        progressDialog.dismiss();
+        Intent intent = new Intent(MyApplication.getContext(), HomepageAty.class);
+        context.startActivity(intent);
     }
 
     @Override
     public void loginError(String ErrorMessage) {
+        progressDialog.dismiss();
         Toast.makeText(MyApplication.getContext(), ErrorMessage, Toast.LENGTH_SHORT).show();
     }
 
