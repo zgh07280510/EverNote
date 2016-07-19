@@ -1,5 +1,6 @@
 package com.lanou.evernote.loginandregister;
 
+import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
@@ -47,6 +48,7 @@ public class LoginAndRegisterAty extends BaseActivity {
         loginAndRegisterAdapter.setFragments(fragments);
         loginViewPager.setAdapter(loginAndRegisterAdapter);
         loginTabLayout.setupWithViewPager(loginViewPager);
+        loginTabLayout.setSelectedTabIndicatorColor(Color.TRANSPARENT);
 
         Bmob.initialize(this, "3e8e0dce858ecb9845dcf7eceb687563");
         LoginAndRegistterContract.Model model = new LoginAndRegisterModel();
