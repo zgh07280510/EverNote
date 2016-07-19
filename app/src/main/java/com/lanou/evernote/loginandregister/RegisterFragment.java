@@ -24,7 +24,7 @@ public class RegisterFragment extends BaseFragment implements LoginAndRegistterC
             public void onClick(View v) {
                 String userName = etMailAddress.getText().toString();
                 String psw = etRegisterPassword.getText().toString();
-                presenter.login(userName, psw);
+                presenter.register(userName, psw);
             }
         });
        presenter.start();

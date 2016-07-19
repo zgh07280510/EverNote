@@ -48,13 +48,13 @@
         android:background="@color/colorLoginTabLayout"
         android:layout_gravity="center"
         android:text="@string/login"
-       />
+       android:layout_marginTop="@dimen/ten_dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="切换到Evernote International"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/twenty_dp"
+        android:layout_marginTop="@dimen/ten_dp"
         android:textColor="@color/colorLoginTabLayout"/>
     <TextView
         android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
         android:textColor="@color/colorLoginTabLayout"
         android:text="@string/password_forget"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/twenty_dp"/>
+        android:layout_marginTop="@dimen/fifteen"/>
     </LinearLayout>
     </ScrollView>
 </LinearLayout>

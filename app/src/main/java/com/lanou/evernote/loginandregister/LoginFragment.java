@@ -24,10 +24,10 @@ public class LoginFragment extends BaseFragment implements  LoginAndRegistterCon
             public void onClick(View v) {
                 String userName = etUserName.getText().toString();
                 String psw = etLoginPassword.getText().toString();
-                presenter.register(userName, psw);
+                presenter.login(userName, psw);
             }
         });
-       // presenter.start();
+        presenter.start();
     }
 
     @Override
@@ -44,12 +44,11 @@ public class LoginFragment extends BaseFragment implements  LoginAndRegistterCon
 
     @Override
     public void loginSuccess() {
-
+        Toast.makeText(MyApplication.getContext(), "登录成功", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void loginError(String ErrorMessage) {
-        Toast.makeText(MyApplication.getContext(), "登录成功", Toast.LENGTH_SHORT).show();
     }
 
 
