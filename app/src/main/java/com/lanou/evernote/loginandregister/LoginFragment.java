@@ -12,7 +12,7 @@ import com.lanou.evernote.base.MyApplication;
 /**
  * Created by dllo on 16/7/18.
  */
-public class LoginFragment extends BaseFragment implements LoginAndRegistterContract.View {
+public class LoginFragment extends BaseFragment implements  LoginAndRegistterContract.LoginView {
     private Button btnLogin;
     private EditText etUserName, etLoginPassword;
     private LoginAndRegistterContract.Presenter presenter;
@@ -52,15 +52,8 @@ public class LoginFragment extends BaseFragment implements LoginAndRegistterCont
         Toast.makeText(MyApplication.getContext(), "登录成功", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void registerSuccess() {
-        Toast.makeText(MyApplication.getContext(), "登录失败", Toast.LENGTH_SHORT).show();
-    }
 
-    @Override
-    public void registerError(String ErrorMessage) {
 
-    }
 
     @Override
     public void setPresenter(LoginAndRegistterContract.Presenter presenter) {
