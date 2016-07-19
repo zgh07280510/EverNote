@@ -1,5 +1,6 @@
 package com.lanou.evernote.loginandregister;
 
+import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
@@ -42,18 +43,23 @@ public class LoginAndRegisterAty extends BaseActivity {
     protected void initData() {
 
         fragments = new ArrayList<>();
+
         //fragments.add(new LoginFragment());
         RegisterFragment registerFragment = new RegisterFragment();
+
         fragments.add(registerFragment);
+        fragments.add(new LoginFragment());
         loginAndRegisterAdapter = new LoginAndRegisterAdapter(getSupportFragmentManager());
         loginAndRegisterAdapter.setFragments(fragments);
         loginViewPager.setAdapter(loginAndRegisterAdapter);
         loginTabLayout.setupWithViewPager(loginViewPager);
 
 
+
         LoginAndRegistterContract.Model model = new LoginAndRegisterModel();
 
         LoginAndRegisterPresenter presenter = new LoginAndRegisterPresenter(model, registerFragment);
         registerFragment.setPresenter(presenter);
+
     }
 }
