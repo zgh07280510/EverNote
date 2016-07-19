@@ -7,6 +7,7 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:hint="@string/mail_address"
+       android:inputType="textEmailAddress"
        android:layout_marginLeft="@dimen/twenty_dp"
        android:layout_marginRight="@dimen/twenty_dp"
        android:layout_marginTop="@dimen/ten_dp"/>
@@ -17,8 +18,8 @@
         android:hint="@string/password"
         android:layout_marginLeft="@dimen/twenty_dp"
         android:layout_marginRight="@dimen/twenty_dp"
-        android:layout_marginTop="@dimen/ten_dp"
-        android:inputType="numberPassword"/>
+
+        android:inputType="textPassword"/>
     <LinearLayout
         android:id="@+id/ll_register_show"
         android:layout_width="wrap_content"
@@ -28,33 +29,22 @@
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:id="@+id/cb_register"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/show_password"/>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="创建账户,表示你同意"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="服务条款"/>
-    </LinearLayout>
+
     <Button
         android:id="@+id/btn_start_use"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorLoginTabLayout"
+        android:background="@drawable/register_login_shape"
         android:layout_gravity="center"
         android:text="@string/start_use"
         android:paddingLeft="@dimen/twenty_dp"
         android:paddingRight="@dimen/twenty_dp"
-        android:layout_marginTop="@dimen/ten_dp"/>
+        android:layout_marginTop="@dimen/five_dp"
+        android:textColor="@android:color/white"/>
 </LinearLayout>

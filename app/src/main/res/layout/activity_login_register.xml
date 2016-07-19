@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 <ImageView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="290dp"
     android:background="@mipmap/impression_note"/>
 <android.support.design.widget.TabLayout
     android:id="@+id/login_register_tabLayout"
