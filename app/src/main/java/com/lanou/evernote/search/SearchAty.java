@@ -2,6 +2,7 @@ package com.lanou.evernote.search;
 
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lanou.evernote.R;
 import com.lanou.evernote.base.BaseActivity;
@@ -41,6 +43,7 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
         searchEt = (EditText) findViewById(R.id.et_search);
         llSearch = (LinearLayout) findViewById(R.id.ll_search);
         btnAccurateSearch = (Button) findViewById(R.id.btn_accurate_search);
+        popupWindow = new PopupWindow();
     }
 
     @Override
@@ -65,10 +68,13 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_accurate_search:
+
+                Toast.makeText(this, "dainji", Toast.LENGTH_SHORT).show();
                 initPopupWindow();
                 break;
         }
     }
+
 
     public void initPopupWindow() {
         WindowManager windowManager = getWindowManager();
@@ -78,6 +84,8 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
         View popupView = LayoutInflater.from(this).inflate(R.layout.accurate_search_popupwindown, null);
         popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, displayMetrics.heightPixels);
         popupWindow.setContentView(popupView);
-
+       // popupWindow.showAtLocation(, Gravity.TOP,0,60);
+        popupWindow.showAsDropDown(btnAccurateSearch);
     }
+
 }
