@@ -46,6 +46,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColorLink="@color/white"/>
+        <ImageView
+            android:id="@+id/iv_clear_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/abc_ic_clear_mtrl_alpha"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/ten_dp"/>
 </RelativeLayout>
 </LinearLayout>
     <Button
