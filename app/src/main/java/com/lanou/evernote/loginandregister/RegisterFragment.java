@@ -4,6 +4,7 @@ package com.lanou.evernote.loginandregister;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -84,8 +85,12 @@ public class RegisterFragment extends BaseFragment implements LoginAndRegistterC
             public void onClick(View v) {
                 String userName = etMailAddress.getText().toString();
                 String psw = etRegisterPassword.getText().toString();
+
                 presenter.register(userName, psw);
-                showDialog();
+                if (!(userName.isEmpty()&& psw.isEmpty())) {
+
+                    showDialog();
+                }
             }
         });
         presenter.start();
@@ -100,7 +105,7 @@ public class RegisterFragment extends BaseFragment implements LoginAndRegistterC
 
     @Override
     public void registerError(String ErrorMessage) {
-        progressDialog.dismiss();
+
         Toast.makeText(MyApplication.getContext(), "注册失败", Toast.LENGTH_SHORT).show();
 
     }
