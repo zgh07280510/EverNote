@@ -1,8 +1,7 @@
 package com.lanou.evernote.homepage;
 
-import android.support.design.widget.FloatingActionButton;
+
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -10,7 +9,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.lanou.evernote.R;
 import com.lanou.evernote.base.BaseActivity;
 
@@ -18,35 +20,68 @@ import com.lanou.evernote.base.BaseActivity;
  * Created by zouguohua on 16/7/19.
  */
 public class HomepageAty extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener,
-        MenuItem.OnMenuItemClickListener {
-    private FloatingActionButton fab;
+        MenuItem.OnMenuItemClickListener,View.OnClickListener {
+    private MultipleStatusView multipleStatusView;
+  //  private FloatingActionButton fab;
     private Toolbar toolbar;
     private DrawerLayout drawer;
+    private FloatingActionMenu mFloatingActionMenu;
+    private FloatingActionButton mCameraFab;
+    private FloatingActionButton mAccessoryFab;
+    private FloatingActionButton mChatFab;
+    private FloatingActionButton mWriteFab;
+    private FloatingActionButton mRemindFab;
+    private FloatingActionButton mNoteFab;
+
 
 
     @Override
     public int setLayout() {
+
         return R.layout.activity_home_activtiy;
+
     }
 
     @Override
     protected void initView() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+     //   fab = (FloatingActionButton) findViewById(R.id.fab);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        multipleStatusView = (MultipleStatusView) findViewById(R.id.main_multiplestatusview);
+        mFloatingActionMenu = (FloatingActionMenu) findViewById(R.id.main_fab_menu);
+        mCameraFab = (FloatingActionButton) findViewById(R.id.main_fab_camrea);
+        mAccessoryFab = (FloatingActionButton) findViewById(R.id.main_fab_accessory);
+        mChatFab = (FloatingActionButton) findViewById(R.id.main_fab_chat);
+        mWriteFab = (FloatingActionButton) findViewById(R.id.main_fab_sprit);
+        mRemindFab = (FloatingActionButton) findViewById(R.id.main_fab_no_remind);
+        mCameraFab.setOnClickListener(this);
+        mAccessoryFab.setOnClickListener(this);
+        mChatFab.setOnClickListener(this);
+        mWriteFab.setOnClickListener(this);
+        mRemindFab.setOnClickListener(this);
+
+
+        multipleStatusView.setOnRetryClickListener(onRetryClickListener);
+        multipleStatusView.showLoading();
 
     }
+    private final View.OnClickListener onRetryClickListener = new View.OnClickListener() {
+        @Override public void onClick(View v) {
+            Toast.makeText(getApplicationContext(),"您点击了重试视图",Toast.LENGTH_SHORT).show();
+            multipleStatusView.showLoading();
+        }
+    };
 
     @Override
     protected void initData() {
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
 
 
@@ -132,5 +167,14 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
         //  DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         //  drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+
+
+
+        mFloatingActionMenu.toggle(false);
+
     }
 }

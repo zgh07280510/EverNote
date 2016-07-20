@@ -6,4 +6,6 @@
     <color name="colorLoginTabLayout">#2CBA5E</color>
     <color name="colorTab">#96DFB0</color>
     <color name="colorSelectedTabIndicator">#1E7F40</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray">#9A9A9A</color>
 </resources>

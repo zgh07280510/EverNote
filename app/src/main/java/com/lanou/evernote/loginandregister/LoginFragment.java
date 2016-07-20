@@ -27,10 +27,10 @@ public class LoginFragment extends BaseFragment implements LoginAndRegistterCont
     private CheckBox checkBox;
     private ProgressDialog progressDialog;
 
-    private void showDialog(){
-        if (progressDialog == null){
-            progressDialog = ProgressDialog.show(getActivity(),"","请稍后",true,false);
-        }else {
+    private void showDialog() {
+        if (progressDialog == null) {
+            progressDialog = ProgressDialog.show(getActivity(), "", "请稍后", true, false);
+        } else {
             progressDialog.show();
         }
     }
@@ -58,13 +58,13 @@ public class LoginFragment extends BaseFragment implements LoginAndRegistterCont
         llLoginShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!checkBox.isChecked()){
+                if (!checkBox.isChecked()) {
 
                     etLoginPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                     checkBox.setChecked(true);
-                }else {
+                } else {
                     //点击隐藏密码
-                    etLoginPassword.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    etLoginPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                     checkBox.setChecked(false);
                 }
             }
@@ -75,7 +75,9 @@ public class LoginFragment extends BaseFragment implements LoginAndRegistterCont
                 String userName = etUserName.getText().toString();
                 String psw = etLoginPassword.getText().toString();
                 presenter.login(userName, psw);
-                showDialog();
+                if (!(userName.isEmpty()&&psw.isEmpty())) {
+                    showDialog();
+                }
             }
         });
         presenter.start();
@@ -97,26 +99,25 @@ public class LoginFragment extends BaseFragment implements LoginAndRegistterCont
 
     @Override
     public void loginError(String ErrorMessage) {
-        progressDialog.dismiss();
         Toast.makeText(MyApplication.getContext(), ErrorMessage, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.et_user_name_mail_address:
                 Intent intent = new Intent("com.lanou.evernote");
                 MyApplication.getContext().sendBroadcast(intent);
                 break;
-            case  R.id.et_login_password:
+            case R.id.et_login_password:
                 Intent intent1 = new Intent("com.lanou.evernote");
                 MyApplication.getContext().sendBroadcast(intent1);
                 break;
             case R.id.cb_login:
-                if (checkBox.isChecked()){
+                if (checkBox.isChecked()) {
                     etLoginPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                }else {
-                    etLoginPassword.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                } else {
+                    etLoginPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 }
                 break;
         }
