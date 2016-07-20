@@ -57,7 +57,6 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-     //   fab = (FloatingActionButton) findViewById(R.id.fab);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         multipleStatusView = (MultipleStatusView) findViewById(R.id.main_multiplestatusview);
         mFloatingActionMenu = (FloatingActionMenu) findViewById(R.id.main_fab_menu);
@@ -74,7 +73,7 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
 
 
         multipleStatusView.setOnRetryClickListener(onRetryClickListener);
-        multipleStatusView.showLoading();
+       // multipleStatusView.showLoading();
 
     }
     private final View.OnClickListener onRetryClickListener = new View.OnClickListener() {
