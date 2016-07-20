@@ -9,7 +9,80 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.lanou.evernote.homepage.HomeActivtiy"
     tools:showIn="@layout/app_bar_home_activtiy">
+
+    <com.lanou.evernote.homepage.MultipleStatusView
+        android:id="@+id/main_multiplestatusview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--app:loadingView="@layout/custom_loading_view"-->
+        <!--app:emptyView="@layout/custom_empty_view"-->
+        <!--app:errorView="@layout/custom_error_view"-->
+        <!--app:noNetworkView="@layout/custom_no_network_view"-->
+        <!--app:contentView="@layout/main_content"-->
+
+        <!--
+        内容视图可以直接在app:contentView属性指定layout文件，如上。
+
+        第二种用法：
+        直接写在MultipleStatusView节点内，如下。
+
+        <TextView
+            android:id="@+id/content_view"
+            android:text="内容视图"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="20sp"
+            />
+        -->
+
+    </com.lanou.evernote.homepage.MultipleStatusView>
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/main_fab_menu"
+        style="@style/FabMenu"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        app:menu_colorNormal="#14b346"
+        app:menu_colorPressed="#68f1a8"
+        app:menu_colorRipple="#ed0862"
+        app:menu_fab_label="文字笔记"
+        app:menu_labels_ellipsize="end"
+        app:menu_labels_singleLine="true">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/main_fab_camrea"
+            style="@style/FabMenu.Buttons"
+            android:src="@mipmap/large_ic_camera"
+            app:fab_label="拍照" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/main_fab_accessory"
+            style="@style/FabMenu.Buttons"
+            android:src="@mipmap/large_ic_attachment"
+            app:fab_label="附件" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/main_fab_chat"
+            style="@style/FabMenu.Buttons"
+            app:fab_label="工作群聊"
+            android:src="@mipmap/notechat"
+            />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/main_fab_no_remind"
+            style="@style/FabMenu.Buttons"
+            android:src="@mipmap/ic_reminder"
+            app:fab_label="提醒" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/main_fab_sprit"
+            style="@style/FabMenu.Buttons"
+            android:src="@mipmap/large_ic_handwriting"
+            app:fab_label="手写" />
+
+    </com.github.clans.fab.FloatingActionMenu>
 
 </RelativeLayout>
