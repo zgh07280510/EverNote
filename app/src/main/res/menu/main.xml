@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/chat_tool"
+        android:icon="@mipmap/ic_action_message"
+        android:title="群聊"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/search_tool"
+        android:icon="@mipmap/ic_action_search"
+        android:title="搜索"
+        app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/action_choose_note"
         android:orderInCategory="100"
