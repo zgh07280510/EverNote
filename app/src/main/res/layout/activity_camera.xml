@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_done" />
+
+        <ImageView
+
+            android:id="@+id/formatting_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/icon_formatting_off" />
+
+        <ImageView
+            android:id="@+id/attach_enabled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/formatting_off"
+            android:src="@mipmap/icon_attach_enabled" />
+
+        <ImageView
+            android:id="@+id/menu_cam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/attach_enabled"
+            android:src="@mipmap/amsc_cam_menu_cam" />
+
+        <ImageView
+            android:id="@+id/share_enabled"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/menu_cam"
+            android:src="@mipmap/ic_share_gray_enabled" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/share_enabled"
+            android:src="@mipmap/ic_action_more" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/note_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:hint="笔记标题"
+        android:singleLine="true"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
+
+        <ImageView
+            android:id="@+id/ab_page_cam_enabled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:src="@mipmap/ab_page_cam_enabled" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/ab_page_cam_enabled"
+            android:text="我的第一个笔记本" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>
