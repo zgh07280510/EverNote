@@ -9,8 +9,6 @@
     <string name="user_name">用户名或电子邮箱</string>
     <string name="login">登录</string>
     <string name="password_forget">忘记密码</string>
-<<<<<<< HEAD
-
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -29,13 +27,6 @@
     <string name="todo">待办事项</string>
     <string name="remove_the_filter">清除筛选条件</string>
     <string name="use_the_filter">使用筛选条件</string>
-=======
 
-    <string name="search_note">搜索笔记</string>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
->>>>>>> c76170d6588e2fb4193d09f888751a67c1c12872
 
 </resources>
