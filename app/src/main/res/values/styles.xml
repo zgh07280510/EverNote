@@ -15,5 +15,15 @@
     <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="FabMenu">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    <style name="FabMenu.Buttons">
+        <item name="fab_size">mini</item>
+        <item name="fab_colorNormal">#20bf5c</item>
+        <item name="fab_colorPressed">#20bf5c</item>
+        <item name="fab_colorRipple">#20bf5c</item>
+    </style>
 
 </resources>
