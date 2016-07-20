@@ -1,6 +1,7 @@
 package com.lanou.evernote.homepage;
 
 
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,6 +16,7 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.lanou.evernote.R;
 import com.lanou.evernote.base.BaseActivity;
+import com.lanou.evernote.search.SearchAty;
 
 /**
  * Created by zouguohua on 16/7/19.
@@ -31,7 +33,7 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
     private FloatingActionButton mChatFab;
     private FloatingActionButton mWriteFab;
     private FloatingActionButton mRemindFab;
-    private FloatingActionButton mNoteFab;
+
 
 
 
@@ -46,7 +48,7 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
     protected void initView() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-     //   fab = (FloatingActionButton) findViewById(R.id.fab);
+        toolbar.setNavigationIcon(R.mipmap.ic_action_more);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         multipleStatusView = (MultipleStatusView) findViewById(R.id.main_multiplestatusview);
         mFloatingActionMenu = (FloatingActionMenu) findViewById(R.id.main_fab_menu);
@@ -75,15 +77,6 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
 
     @Override
     protected void initData() {
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
-
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -140,6 +133,10 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
         }
         if (id == R.id.view_options){
             return true;
+        }
+        if (id == R.id.search_tool){
+            Intent intent = new Intent(HomepageAty.this, SearchAty.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
