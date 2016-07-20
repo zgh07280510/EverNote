@@ -10,13 +10,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.lanou.evernote.R;
 import com.lanou.evernote.base.BaseActivity;
+<<<<<<< HEAD
 import com.lanou.evernote.search.SearchAty;
+=======
+import com.lanou.evernote.base.ListViewCommonAdapter;
+import com.lanou.evernote.base.ViewHolder;
+
+import java.util.ArrayList;
+>>>>>>> feature/homepage
 
 /**
  * Created by zouguohua on 16/7/19.
@@ -24,7 +32,6 @@ import com.lanou.evernote.search.SearchAty;
 public class HomepageAty extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener,
         MenuItem.OnMenuItemClickListener,View.OnClickListener {
     private MultipleStatusView multipleStatusView;
-  //  private FloatingActionButton fab;
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private FloatingActionMenu mFloatingActionMenu;
@@ -33,6 +40,13 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
     private FloatingActionButton mChatFab;
     private FloatingActionButton mWriteFab;
     private FloatingActionButton mRemindFab;
+<<<<<<< HEAD
+=======
+    private ListView listView;
+    private ArrayList<String> data;
+
+
+>>>>>>> feature/homepage
 
 
 
@@ -46,9 +60,15 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
 
     @Override
     protected void initView() {
+        listView = (ListView) findViewById(R.id.list_view);
+
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+<<<<<<< HEAD
         toolbar.setNavigationIcon(R.mipmap.ic_action_more);
+=======
+>>>>>>> feature/homepage
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         multipleStatusView = (MultipleStatusView) findViewById(R.id.main_multiplestatusview);
         mFloatingActionMenu = (FloatingActionMenu) findViewById(R.id.main_fab_menu);
@@ -65,7 +85,7 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
 
 
         multipleStatusView.setOnRetryClickListener(onRetryClickListener);
-        multipleStatusView.showLoading();
+       // multipleStatusView.showLoading();
 
     }
     private final View.OnClickListener onRetryClickListener = new View.OnClickListener() {
@@ -77,6 +97,22 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
 
     @Override
     protected void initData() {
+<<<<<<< HEAD
+=======
+        data = new ArrayList<>();
+        for (int i = 0; i < 80; i++) {
+            data.add("halou"+i);
+        }
+        listView.setAdapter(new ListViewCommonAdapter<String>(this,data,R.layout.list_item_hompage) {
+
+            @Override
+            public void convert(ViewHolder holder, String s) {
+                holder.setText(R.id.text_,s);
+            }
+        });
+
+
+>>>>>>> feature/homepage
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
