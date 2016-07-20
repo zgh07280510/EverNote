@@ -64,4 +64,5 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
                 break;
         }
     }
+    
 }
