@@ -9,12 +9,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.lanou.evernote.R;
 import com.lanou.evernote.base.BaseActivity;
+import com.lanou.evernote.base.ListViewCommonAdapter;
+import com.lanou.evernote.base.ViewHolder;
+
+import java.util.ArrayList;
 
 /**
  * Created by zouguohua on 16/7/19.
@@ -22,7 +27,6 @@ import com.lanou.evernote.base.BaseActivity;
 public class HomepageAty extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener,
         MenuItem.OnMenuItemClickListener,View.OnClickListener {
     private MultipleStatusView multipleStatusView;
-  //  private FloatingActionButton fab;
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private FloatingActionMenu mFloatingActionMenu;
@@ -31,7 +35,11 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
     private FloatingActionButton mChatFab;
     private FloatingActionButton mWriteFab;
     private FloatingActionButton mRemindFab;
-    private FloatingActionButton mNoteFab;
+    private ListView listView;
+    private ArrayList<String> data;
+
+
+
 
 
 
@@ -44,6 +52,9 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
 
     @Override
     protected void initView() {
+        listView = (ListView) findViewById(R.id.list_view);
+
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
      //   fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -75,13 +86,17 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
 
     @Override
     protected void initData() {
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        data = new ArrayList<>();
+        for (int i = 0; i < 80; i++) {
+            data.add("halou"+i);
+        }
+        listView.setAdapter(new ListViewCommonAdapter<String>(this,data,R.layout.list_item_hompage) {
+
+            @Override
+            public void convert(ViewHolder holder, String s) {
+                holder.setText(R.id.text_,s);
+            }
+        });
 
 
 
