@@ -177,7 +177,7 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
     @Override
     public void onClick(View v) {
 
-
+        
 
         mFloatingActionMenu.toggle(false);
 
