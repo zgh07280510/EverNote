@@ -1,5 +1,6 @@
 package com.lanou.evernote.search;
 
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.Gravity;
@@ -22,6 +23,9 @@ import com.lanou.evernote.base.BaseActivity;
 import com.lanou.evernote.base.ListViewCommonAdapter;
 import com.lanou.evernote.base.ViewHolder;
 import com.lanou.evernote.tools.DisplayUtil;
+import com.lanou.evernote.tools.LocalData;
+import com.lanou.evernote.tools.SingleLiteOrm;
+import com.litesuits.orm.db.assit.QueryBuilder;
 
 import java.util.ArrayList;
 
@@ -35,7 +39,9 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
     private SearchView svSearch;
     private LinearLayout llGreen;
     private PopupWindow popupWindow;
-    private ArrayList<HistoryBean> bean;
+    private ArrayList<LocalData> datas;
+    private String svContent;
+
 
 
     @Override
@@ -58,25 +64,41 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
     @Override
     protected void initData() {
         searchRecodeListView.setTextFilterEnabled(true);
+        svSearch.setIconifiedByDefault(false);
+        svSearch.setQueryHint("搜索笔记");
+
+        svSearch.setSubmitButtonEnabled(true);
         btnAccurateSearch.setOnClickListener(this);
         btnBack.setOnClickListener(this);
         svSearch.setOnClickListener(this);
-        searchRecodeListView.setAdapter(new ListViewCommonAdapter<HistoryBean>(this, bean, R.layout.history_item_list) {
+        searchRecodeListView.setAdapter(new ListViewCommonAdapter<LocalData>(this,datas, R.layout.history_item_list) {
 
             @Override
-            public void convert(ViewHolder holder, HistoryBean historyBean) {
+            public void convert(ViewHolder holder, LocalData localData) {
 
             }
+
+            
         });
         svSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
             @Override
             public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(SearchAty.this, "您的选择是" + query, Toast.LENGTH_SHORT).show();
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                return false;
+                if (TextUtils.isEmpty(newText)){
+                    searchRecodeListView.clearTextFilter();
+                }else {
+                    searchRecodeListView.setFilterText(newText);
+        SingleLiteOrm.getSingleLiteOrm().getLiteOrm().insert(newText);
+//                   QueryBuilder<>()
+//                    SingleLiteOrm.getSingleLiteOrm().getLiteOrm().query("");
+                }
+                return true;
             }
         });
     }
