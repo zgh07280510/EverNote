@@ -32,7 +32,7 @@ import java.util.ArrayList;
  */
 public class HomepageAty extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener,
         MenuItem.OnMenuItemClickListener,View.OnClickListener {
-    private MultipleStatusView multipleStatusView;
+
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private FloatingActionMenu mFloatingActionMenu;
@@ -41,15 +41,8 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
     private FloatingActionButton mChatFab;
     private FloatingActionButton mWriteFab;
     private FloatingActionButton mRemindFab;
-    private ListView listView;
-    private ArrayList<String> data;
-    private TextView textView;
-
-
-
-
-
-
+    private AllNoteFragment allNoteFragment;
+    private NoteBookFragment noteBookFragment;
 
     @Override
     public int setLayout() {
@@ -60,14 +53,12 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
 
     @Override
     protected void initView() {
-        listView = (ListView) findViewById(R.id.list_view);
-        textView = (TextView) findViewById(R.id.homepage_header_tv);
+
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        multipleStatusView = (MultipleStatusView) findViewById(R.id.main_multiplestatusview);
         mFloatingActionMenu = (FloatingActionMenu) findViewById(R.id.main_fab_menu);
         mCameraFab = (FloatingActionButton) findViewById(R.id.main_fab_camrea);
         mAccessoryFab = (FloatingActionButton) findViewById(R.id.main_fab_accessory);
@@ -81,53 +72,16 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
         mRemindFab.setOnClickListener(this);
 
 
-        multipleStatusView.setOnRetryClickListener(onRetryClickListener);
+
 
 
     }
-    private final View.OnClickListener onRetryClickListener = new View.OnClickListener() {
-        @Override public void onClick(View v) {
-            Toast.makeText(getApplicationContext(),"您点击了重试视图",Toast.LENGTH_SHORT).show();
-            multipleStatusView.showLoading();
-        }
-    };
+
 
     @Override
     protected void initData() {
-        data = new ArrayList<>();
-        for (int i = 0; i < 80; i++) {
-            data.add("halou"+i);
-        }
-        listView.setAdapter(new ListViewCommonAdapter<String>(this,data,R.layout.list_item_hompage) {
-
-            @Override
-            public void convert(ViewHolder holder, String s) {
-                holder.setText(R.id.text_,s);
-            }
-        });
-
-        View header = View.inflate(this,R.layout.home_list_header,null);
-        listView.addHeaderView(header);
-        listView.addHeaderView(View.inflate(this,R.layout.homepage_action,null));
-
-        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                if (firstVisibleItem >= 1) {
-                    textView.setVisibility(View.VISIBLE);
-                } else {
-                    textView.setVisibility(View.GONE);
-                }
-            }
-        });
-
-
-
+        allNoteFragment = new AllNoteFragment();
+        noteBookFragment = new NoteBookFragment();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -203,9 +157,12 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
             // Handle the camera action
 
         } else if (id == R.id.all_notes) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.homepage_framlayout,allNoteFragment)
+                    .commit();
 
         } else if (id == R.id.note_book) {
-
+            getSupportFragmentManager().beginTransaction().replace(R.id.homepage_framlayout,noteBookFragment)
+                    .commit();
         } else if (id == R.id.search_notes) {
 
         } else if (id == R.id.note_setting) {
