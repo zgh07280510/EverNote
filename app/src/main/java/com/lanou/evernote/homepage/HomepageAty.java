@@ -219,9 +219,23 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
 
     @Override
     public void onClick(View v) {
-
-
-
+        switch (v.getId()) {
+            case R.id.main_fab_camrea:
+               multipleStatusView.showError();
+                break;
+            case R.id.main_fab_accessory:
+                multipleStatusView.showEmpty();
+                break;
+            case R.id.main_fab_chat:
+                multipleStatusView.showError();
+                break;
+            case R.id.main_fab_no_remind:
+                multipleStatusView.showNoNetwork();
+                break;
+            case R.id.main_fab_sprit:
+                multipleStatusView.showContent();
+                break;
+        }
         mFloatingActionMenu.toggle(false);
 
     }
