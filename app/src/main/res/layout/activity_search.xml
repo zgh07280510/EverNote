@@ -4,24 +4,26 @@
     android:layout_height="match_parent">
 
 <LinearLayout
+    android:id="@+id/ll_search_green"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="55dp"
     android:orientation="horizontal"
     android:background="@color/colorLoginTabLayout">
     <Button
         android:id="@+id/btn_search_back"
-        android:layout_width="@dimen/twenty_dp"
-        android:layout_height="@dimen/twenty_dp"
+        android:layout_width="@dimen/fifteen"
+        android:layout_height="@dimen/fifteen"
         android:background="@mipmap/ic_back_grey"
         android:layout_marginLeft="@dimen/twenty_dp"
-        android:layout_marginTop="@dimen/ten_dp"/>
+        android:layout_marginTop="@dimen/twenty_dp"/>
     <RelativeLayout
         android:id="@+id/rl_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorLoginTabLayout"
+
         android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        android:layout_marginLeft="@dimen/ten_dp">
     <LinearLayout
         android:id="@+id/ll_search"
         android:layout_width="match_parent"
@@ -44,26 +46,31 @@
     <EditText
         android:id="@+id/et_search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorLink="@color/white"/>
+        android:layout_height="50dp"
+        android:textColorLink="@android:color/white"
+      />
         <ImageView
             android:id="@+id/iv_clear_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@mipmap/abc_ic_clear_mtrl_alpha"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/ten_dp"/>
+            android:layout_marginTop="@dimen/fifteen"
+            android:layout_marginRight="@dimen/ten_dp"
+            />
 </RelativeLayout>
 </LinearLayout>
     <Button
         android:id="@+id/btn_accurate_search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/forty_dp"
         android:background="@drawable/button_shape"
         android:text="提升搜索精准度"
         android:textColor="@color/gray"
         android:layout_marginLeft="@dimen/five_dp"
-        android:layout_marginRight="@dimen/five_dp"/>
+        android:layout_marginRight="@dimen/five_dp"
+        android:layout_marginTop="@dimen/fifteen"
+        />
     <ListView
         android:id="@+id/search_listView"
         android:layout_width="match_parent"

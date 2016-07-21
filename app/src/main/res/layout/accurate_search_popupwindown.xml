@@ -6,152 +6,219 @@
 
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/twenty_dp"
-    android:background="@color/white">
+    android:layout_height="@dimen/forty_dp"
+    android:layout_marginLeft="@dimen/ten_dp"
+    android:background="@color/white"
+    android:layout_marginRight="@dimen/ten_dp">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/accurate_search"/>
+        android:text="@string/accurate_search"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/ten_dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="找到1条笔记"
-        android:layout_marginLeft="100dp"/>
+      android:layout_marginLeft="180dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="@dimen/ten_dp"/>
 </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_note"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/fifty_six_dp"
         android:orientation="horizontal"
         android:layout_marginLeft="@dimen/ten_dp"
         android:layout_marginTop="@dimen/one_dp"
         android:background="@color/white"
         android:layout_marginRight="@dimen/ten_dp">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@mipmap/ic_options_done"
-            android:layout_gravity="center_vertical"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/ic_note"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/ten_dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/note"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/ten_dp"/>
+            android:layout_marginLeft="@dimen/ten_dp"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/eighteen_sp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/fifty_six_dp"
         android:orientation="horizontal"
         android:layout_marginLeft="@dimen/ten_dp"
         android:layout_marginTop="@dimen/one_dp"
         android:background="@color/white"
         android:layout_marginRight="@dimen/ten_dp">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@mipmap/ic_options_done"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/ic_label"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/ten_dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label"
-            android:layout_marginTop="@dimen/five_dp"
-            android:layout_marginLeft="@dimen/ten_dp"/>
+            android:layout_marginLeft="@dimen/ten_dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/eighteen_sp"
+            android:textColor="@android:color/black"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/fifty_six_dp"
         android:orientation="horizontal"
         android:layout_marginLeft="@dimen/ten_dp"
         android:layout_marginTop="@dimen/one_dp"
         android:background="@color/white"
         android:layout_marginRight="@dimen/ten_dp">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@mipmap/ic_options_done"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/ic_date"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/ten_dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/date"
-            android:layout_marginTop="@dimen/five_dp"
-            android:layout_marginLeft="@dimen/ten_dp"/>
+            android:layout_marginLeft="@dimen/ten_dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/eighteen_sp"
+            android:textColor="@android:color/black"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/fifty_six_dp"
         android:orientation="horizontal"
         android:layout_marginLeft="@dimen/ten_dp"
         android:layout_marginTop="@dimen/one_dp"
         android:background="@color/white"
         android:layout_marginRight="@dimen/ten_dp">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@mipmap/ic_options_places"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/ic_address"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/ten_dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/address"
-            android:layout_marginTop="@dimen/five_dp"
-            android:layout_marginLeft="@dimen/ten_dp"/>
+            android:layout_marginLeft="@dimen/ten_dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/eighteen_sp"
+            android:textColor="@android:color/black"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/fifty_six_dp"
         android:orientation="horizontal"
         android:layout_marginLeft="@dimen/ten_dp"
         android:layout_marginTop="@dimen/one_dp"
         android:background="@color/white"
         android:layout_marginRight="@dimen/ten_dp">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@mipmap/ic_options_done"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/ic_source_type"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/ten_dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/source_type"
-            android:layout_marginTop="@dimen/five_dp"
-            android:layout_marginLeft="@dimen/ten_dp"/>
+            android:layout_marginLeft="@dimen/ten_dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/eighteen_sp"
+            android:textColor="@android:color/black"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/fifty_six_dp"
         android:orientation="horizontal"
         android:layout_marginLeft="@dimen/ten_dp"
         android:layout_marginTop="@dimen/one_dp"
         android:background="@color/white"
         android:layout_marginRight="@dimen/ten_dp">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@mipmap/icon_attach_enabled"/>
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@mipmap/icon_attach_enabled"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/ten_dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/attachment"
-            android:layout_marginTop="@dimen/five_dp"
-            android:layout_marginLeft="@dimen/ten_dp"/>
+            android:layout_marginLeft="@dimen/ten_dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/eighteen_sp"
+            android:textColor="@android:color/black"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/fifty_six_dp"
         android:orientation="horizontal"
         android:layout_marginLeft="@dimen/ten_dp"
         android:layout_marginTop="@dimen/one_dp"
         android:background="@color/white"
         android:layout_marginRight="@dimen/ten_dp">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@mipmap/ic_options_done"/>
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@mipmap/ic_options_done"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/ten_dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/todo"
-            android:layout_marginTop="@dimen/five_dp"
-            android:layout_marginLeft="@dimen/ten_dp"/>
+            android:layout_marginLeft="@dimen/ten_dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/eighteen_sp"
+            android:textColor="@android:color/black"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fifty_six_dp"
+        android:orientation="horizontal"
+        android:background="@color/gray"
+        android:layout_marginTop="@dimen/five_dp">
+        <Button
+            android:id="@+id/btn_remove_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/remove_the_filter"
+            android:background="@android:color/transparent"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:textSize="@dimen/eighteen_sp"
+            android:layout_gravity="center_vertical"/>
+        <Button
+            android:layout_width="@dimen/two_dp"
+            android:layout_height="wrap_content"
+            android:background="#CDCDCD"
+            android:layout_marginTop="@dimen/ten_dp"
+            android:layout_marginBottom="@dimen/ten_dp"/>
+        <Button
+            android:id="@+id/btn_use_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/use_the_filter"
+            android:background="@android:color/transparent"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:textSize="@dimen/eighteen_sp"
+            android:layout_gravity="center_vertical"/>
+
     </LinearLayout>
 </LinearLayout>
