@@ -43,8 +43,8 @@
             android:textColor="@android:color/white"/>
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/et_search"
+    <SearchView
+        android:id="@+id/sv_search"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:textColorLink="@android:color/white"

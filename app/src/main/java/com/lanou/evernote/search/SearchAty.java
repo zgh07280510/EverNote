@@ -13,12 +13,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lanou.evernote.R;
 import com.lanou.evernote.base.BaseActivity;
+import com.lanou.evernote.base.ListViewCommonAdapter;
+import com.lanou.evernote.base.ViewHolder;
 import com.lanou.evernote.tools.DisplayUtil;
+
+import java.util.ArrayList;
 
 
 /**
@@ -27,10 +32,11 @@ import com.lanou.evernote.tools.DisplayUtil;
 public class SearchAty extends BaseActivity implements View.OnClickListener {
     private ListView searchRecodeListView;
     private Button btnBack, btnAccurateSearch;
-    private EditText searchEt;
-    private LinearLayout llSearch,llGreen;
+    private SearchView svSearch;
+    private LinearLayout llSearch, llGreen;
     private PopupWindow popupWindow;
     private ImageView ivClear;
+    private ArrayList<HistoryBean> bean;
 
 
     @Override
@@ -44,7 +50,7 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
 
         searchRecodeListView = (ListView) findViewById(R.id.search_listView);
         btnBack = (Button) findViewById(R.id.btn_search_back);
-        searchEt = (EditText) findViewById(R.id.et_search);
+        svSearch = (SearchView) findViewById(R.id.sv_search);
         llSearch = (LinearLayout) findViewById(R.id.ll_search);
         btnAccurateSearch = (Button) findViewById(R.id.btn_accurate_search);
         llGreen = (LinearLayout) findViewById(R.id.ll_search_green);
@@ -54,24 +60,30 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void initData() {
-        searchEt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    if ("".equals(searchEt.getText().toString())) {
-                        llSearch.setVisibility(View.VISIBLE);
-                    }
-                } else {
-                    llSearch.setVisibility(View.GONE);
-                }
-            }
-        });
+//        svSearch.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (!hasFocus) {
+//                    if ("".equals(svSearch.getContext().getText().toString())) {
+//                        llSearch.setVisibility(View.VISIBLE);
+//                    }
+//                } else {
+//                    llSearch.setVisibility(View.GONE);
+//                }
+//            }
+//        });
         btnAccurateSearch.setOnClickListener(this);
         btnBack.setOnClickListener(this);
         ivClear.setOnClickListener(this);
-        searchEt.setOnClickListener(this);
-    }
+        svSearch.setOnClickListener(this);
+        searchRecodeListView.setAdapter(new ListViewCommonAdapter<HistoryBean>(this, bean, R.layout.history_item_list) {
 
+            @Override
+            public void convert(ViewHolder holder, HistoryBean historyBean) {
+
+            }
+        });
+    }
 
     @Override
     public void onClick(View v) {
@@ -91,21 +103,21 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
                 btnAccurateSearch.setVisibility(View.VISIBLE);
                 break;
             case R.id.ll_note:
-            showPopupWindow();
+                showPopupWindow();
                 break;
-            case R.id.et_search:
-                if (searchEt != null){
-                    ivClear.setVisibility(View.VISIBLE);
-                }else {
-                    ivClear.setVisibility(View.GONE);
-                }
+            case R.id.sv_search:
+//                if (searchEt != null) {
+//                    ivClear.setVisibility(View.VISIBLE);
+//                } else {
+//                    ivClear.setVisibility(View.GONE);
+//                }
                 break;
         }
     }
 
 
     public void initPopupWindow() {
-        Button btnUseFilter,btnRemoveFilter;
+        Button btnUseFilter, btnRemoveFilter;
         LinearLayout llNote;
         WindowManager windowManager = getWindowManager();
         Display display = windowManager.getDefaultDisplay();
@@ -114,21 +126,22 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
         View popupView = LayoutInflater.from(this).inflate(R.layout.accurate_search_popupwindown, null);
         popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, displayMetrics.heightPixels);
         popupWindow.setContentView(popupView);
-        popupWindow.showAsDropDown(btnAccurateSearch);
+        popupWindow.showAsDropDown(llGreen, DisplayUtil.px2dip(this, 0), DisplayUtil.px2dip(this, 100));
         btnUseFilter = (Button) popupView.findViewById(R.id.btn_use_filter);
         btnRemoveFilter = (Button) popupView.findViewById(R.id.btn_remove_filter);
-        llNote = (LinearLayout)popupView.findViewById(R.id.ll_note);
+        llNote = (LinearLayout) popupView.findViewById(R.id.ll_note);
         btnUseFilter.setOnClickListener(this);
         llNote.setOnClickListener(this);
     }
-public void  showPopupWindow(){
-    WindowManager windowManager = getWindowManager();
-    Display display = windowManager.getDefaultDisplay();
-    DisplayMetrics displayMetrics = new DisplayMetrics();
-    display.getMetrics(displayMetrics);
-    View view= LayoutInflater.from(this).inflate(R.layout.note_popupwindow,null);
-    popupWindow = new PopupWindow(view,displayMetrics.widthPixels/5*4,displayMetrics.heightPixels/4*3);
-    popupWindow.setContentView(view);
-    popupWindow.showAsDropDown(searchEt);
-}
+
+    public void showPopupWindow() {
+        WindowManager windowManager = getWindowManager();
+        Display display = windowManager.getDefaultDisplay();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        display.getMetrics(displayMetrics);
+        View view = LayoutInflater.from(this).inflate(R.layout.note_popupwindow, null);
+        popupWindow = new PopupWindow(view, displayMetrics.widthPixels / 5 * 4, displayMetrics.heightPixels / 4 * 3);
+        popupWindow.setContentView(view);
+        popupWindow.showAsDropDown(svSearch);
+    }
 }
