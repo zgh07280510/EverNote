@@ -1,18 +1,31 @@
 package com.lanou.evernote.camera;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
 import com.lanou.evernote.R;
 import com.lanou.evernote.base.BaseActivity;
 import com.lanou.evernote.tools.LayoutParamsUtil;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Locale;
 
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
@@ -27,6 +40,10 @@ public class CameraAty extends BaseActivity implements View.OnClickListener {
     private View cameraPopView;
     private View alphaView;
     private RelativeLayout cameraLv;
+    private ImageView cameraIv;
+    private ImageView showRecordIv;
+    private ImageView watchIv;
+    private View watchView;
 
     @Override
     public int setLayout() {
@@ -39,25 +56,45 @@ public class CameraAty extends BaseActivity implements View.OnClickListener {
         shareIv = (ImageView) findViewById(R.id.share_enabled);
         alphaView = (View) findViewById(R.id.alpha_view);
         cameraLv = (RelativeLayout) findViewById(R.id.camera_lv);
-
+        cameraIv = (ImageView) findViewById(R.id.menu_cam);
+        showRecordIv = (ImageView) findViewById(R.id.record_show_iv);
+        watchIv = (ImageView) findViewById(R.id.watch_iv);
     }
 
     @Override
     protected void initData() {
         attachIv.setOnClickListener(this);
         shareIv.setOnClickListener(this);
-
-
+        cameraIv.setOnClickListener(this);
+        watchIv.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.attach_enabled:
-            loadPop();
+                loadPop();
                 break;
             case R.id.share_enabled:
                 share();
+                break;
+            case R.id.menu_cam:
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                intent.addCategory("android.intent.category.DEFAULT");
+                startActivityForResult(intent, 1);
+
+                break;
+            case R.id.watch_iv:
+                watchView = LayoutInflater.from(this).inflate(R.layout.item_watchpop, null);
+                PopupWindow popupWindow = new PopupWindow(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                //外部获得焦点
+                popupWindow.setOutsideTouchable(true);
+                //内部获得焦点
+                popupWindow.setFocusable(true);
+                popupWindow.setBackgroundDrawable(new BitmapDrawable());
+                popupWindow.setContentView(watchView);
+                popupWindow.showAsDropDown(watchIv);
                 break;
         }
     }
@@ -112,5 +149,40 @@ public class CameraAty extends BaseActivity implements View.OnClickListener {
         popupWindow.showAtLocation(cameraLv, Gravity.BOTTOM, 0, 0);
 
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            String sdStaUs = Environment.getExternalStorageState();
+            //检测sd是否可用
+            if (!sdStaUs.equals(Environment.MEDIA_MOUNTED)) {
+                return;
+            }
+            String name = new DateFormat().format("yyyyMMdd_hhmmss", Calendar.getInstance(Locale.CHINA)) + ".jpg";
+            Bundle bundle = data.getExtras();
+            Bitmap bitmap = (Bitmap) bundle.get("data");//获取相机返回的数据,并转为Bitmap图片格式
+            FileOutputStream b = null;
+            File file = new File("/sdcard/myImage");
+            file.mkdirs();//创建文件夹
+            String fileName = "/sdcard/myImage" + name;
+            try {
+                b = new FileOutputStream(fileName);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, b);//将流写入文件
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    b.flush();
+                    b.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            showRecordIv.setVisibility(View.VISIBLE);
+            showRecordIv.setImageBitmap(bitmap);
+        }
     }
 }
