@@ -33,9 +33,8 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
     private ListView searchRecodeListView;
     private Button btnBack, btnAccurateSearch;
     private SearchView svSearch;
-    private LinearLayout llSearch, llGreen;
+    private LinearLayout llGreen;
     private PopupWindow popupWindow;
-    private ImageView ivClear;
     private ArrayList<HistoryBean> bean;
 
 
@@ -51,36 +50,33 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
         searchRecodeListView = (ListView) findViewById(R.id.search_listView);
         btnBack = (Button) findViewById(R.id.btn_search_back);
         svSearch = (SearchView) findViewById(R.id.sv_search);
-        llSearch = (LinearLayout) findViewById(R.id.ll_search);
-        btnAccurateSearch = (Button) findViewById(R.id.btn_accurate_search);
+         btnAccurateSearch = (Button) findViewById(R.id.btn_accurate_search);
         llGreen = (LinearLayout) findViewById(R.id.ll_search_green);
-        ivClear = (ImageView) findViewById(R.id.iv_clear_search);
         popupWindow = new PopupWindow();
     }
 
     @Override
     protected void initData() {
-//        svSearch.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if (!hasFocus) {
-//                    if ("".equals(svSearch.getContext().getText().toString())) {
-//                        llSearch.setVisibility(View.VISIBLE);
-//                    }
-//                } else {
-//                    llSearch.setVisibility(View.GONE);
-//                }
-//            }
-//        });
+        searchRecodeListView.setTextFilterEnabled(true);
         btnAccurateSearch.setOnClickListener(this);
         btnBack.setOnClickListener(this);
-        ivClear.setOnClickListener(this);
         svSearch.setOnClickListener(this);
         searchRecodeListView.setAdapter(new ListViewCommonAdapter<HistoryBean>(this, bean, R.layout.history_item_list) {
 
             @Override
             public void convert(ViewHolder holder, HistoryBean historyBean) {
 
+            }
+        });
+        svSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
             }
         });
     }
@@ -95,9 +91,7 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
             case R.id.btn_search_back:
                 finish();
                 break;
-            case R.id.iv_clear_search:
 
-                break;
             case R.id.btn_use_filter:
                 popupWindow.dismiss();
                 btnAccurateSearch.setVisibility(View.VISIBLE);
@@ -106,11 +100,7 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
                 showPopupWindow();
                 break;
             case R.id.sv_search:
-//                if (searchEt != null) {
-//                    ivClear.setVisibility(View.VISIBLE);
-//                } else {
-//                    ivClear.setVisibility(View.GONE);
-//                }
+
                 break;
         }
     }

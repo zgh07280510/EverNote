@@ -16,32 +16,9 @@
         android:background="@mipmap/ic_back_grey"
         android:layout_marginLeft="@dimen/twenty_dp"
         android:layout_marginTop="@dimen/twenty_dp"/>
-    <RelativeLayout
-        android:id="@+id/rl_search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:layout_marginLeft="@dimen/ten_dp">
-    <LinearLayout
-        android:id="@+id/ll_search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/ten_dp">
-       <ImageView
-           android:id="@+id/iv_search"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:src="@mipmap/abc_ic_search_api_mtrl_alpha"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/search_note"
-            android:textColor="@android:color/white"/>
-    </LinearLayout>
+
+
 
     <SearchView
         android:id="@+id/sv_search"
@@ -49,16 +26,7 @@
         android:layout_height="50dp"
         android:textColorLink="@android:color/white"
       android:singleLine="true"/>
-        <ImageView
-            android:id="@+id/iv_clear_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/abc_ic_clear_mtrl_alpha"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/fifteen"
-            android:layout_marginRight="@dimen/ten_dp"
-            />
-</RelativeLayout>
+
 </LinearLayout>
     <Button
         android:id="@+id/btn_accurate_search"
