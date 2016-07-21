@@ -16,6 +16,7 @@ public class SingleLiteOrm {
 
     private SingleLiteOrm() {
         liteOrm = LiteOrm.newCascadeInstance(MyApplication.getContext(),"SearchHistory.db");
+        
 
     }
 
