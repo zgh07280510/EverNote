@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -26,8 +27,9 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
     private ListView searchRecodeListView;
     private Button btnBack, btnAccurateSearch;
     private EditText searchEt;
-    private LinearLayout llSearch;
+    private LinearLayout llSearch,llGreen;
     private PopupWindow popupWindow;
+    private ImageView ivClear;
 
 
     @Override
@@ -38,11 +40,14 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void initView() {
+
         searchRecodeListView = (ListView) findViewById(R.id.search_listView);
         btnBack = (Button) findViewById(R.id.btn_search_back);
         searchEt = (EditText) findViewById(R.id.et_search);
         llSearch = (LinearLayout) findViewById(R.id.ll_search);
         btnAccurateSearch = (Button) findViewById(R.id.btn_accurate_search);
+        llGreen = (LinearLayout) findViewById(R.id.ll_search_green);
+        ivClear = (ImageView) findViewById(R.id.iv_clear_search);
         popupWindow = new PopupWindow();
     }
 
@@ -61,6 +66,9 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
             }
         });
         btnAccurateSearch.setOnClickListener(this);
+        btnBack.setOnClickListener(this);
+        ivClear.setOnClickListener(this);
+        searchEt.setOnClickListener(this);
     }
 
 
@@ -68,15 +76,36 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_accurate_search:
-
-                Toast.makeText(this, "dainji", Toast.LENGTH_SHORT).show();
                 initPopupWindow();
+                btnAccurateSearch.setVisibility(View.GONE);
+                break;
+            case R.id.btn_search_back:
+                finish();
+                break;
+            case R.id.iv_clear_search:
+
+                break;
+            case R.id.btn_use_filter:
+                popupWindow.dismiss();
+                btnAccurateSearch.setVisibility(View.VISIBLE);
+                break;
+            case R.id.ll_note:
+
+                break;
+            case R.id.et_search:
+                if (searchEt != null){
+                    ivClear.setVisibility(View.VISIBLE);
+                }else {
+                    ivClear.setVisibility(View.GONE);
+                }
                 break;
         }
     }
 
 
     public void initPopupWindow() {
+        Button btnUseFilter,btnRemoveFilter;
+        LinearLayout llNote;
         WindowManager windowManager = getWindowManager();
         Display display = windowManager.getDefaultDisplay();
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -84,8 +113,14 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
         View popupView = LayoutInflater.from(this).inflate(R.layout.accurate_search_popupwindown, null);
         popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, displayMetrics.heightPixels);
         popupWindow.setContentView(popupView);
-       // popupWindow.showAtLocation(, Gravity.TOP,0,60);
-        popupWindow.showAsDropDown(btnAccurateSearch);
+        popupWindow.showAsDropDown(llGreen,0,30);
+       //
+        btnUseFilter = (Button) popupView.findViewById(R.id.btn_use_filter);
+        btnRemoveFilter = (Button) findViewById(R.id.btn_remove_filter);
+        llNote = (LinearLayout) findViewById(R.id.ll_note);
+        btnUseFilter.setOnClickListener(this);
     }
+public void  showPopupWindow(){
 
+}
 }
