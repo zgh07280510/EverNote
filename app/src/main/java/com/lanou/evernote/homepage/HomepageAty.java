@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +31,7 @@ import com.lanou.evernote.base.ListViewCommonAdapter;
 import com.lanou.evernote.base.ViewHolder;
 import com.lanou.evernote.search.SearchAty;
 import com.lanou.evernote.tools.BitmapToByte;
+import com.lanou.evernote.tools.SingleLiteOrm;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -44,7 +46,7 @@ import java.util.Locale;
  * Created by zouguohua on 16/7/19.
  */
 public class HomepageAty extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener,
-        MenuItem.OnMenuItemClickListener,View.OnClickListener {
+        MenuItem.OnMenuItemClickListener, View.OnClickListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawer;
@@ -87,9 +89,6 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
         mRemindFab.setOnClickListener(this);
 
 
-
-
-
     }
 
 
@@ -107,6 +106,7 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
         navigationView.setNavigationItemSelectedListener(this);
 
     }
+
     @Override
     public void onBackPressed() {
 
@@ -137,22 +137,22 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
         if (id == R.id.add_to_screen) {
             return true;
         }
-        if (id == R.id.action_choose_note){
+        if (id == R.id.action_choose_note) {
             return true;
         }
-        if (id == R.id.setting){
+        if (id == R.id.setting) {
             return true;
         }
-        if (id == R.id.sort_ways){
+        if (id == R.id.sort_ways) {
             return true;
         }
-        if (id == R.id.synchronize){
+        if (id == R.id.synchronize) {
             return true;
         }
-        if (id == R.id.view_options){
+        if (id == R.id.view_options) {
             return true;
         }
-        if (id == R.id.search_tool){
+        if (id == R.id.search_tool) {
             Intent intent = new Intent(HomepageAty.this, SearchAty.class);
             startActivity(intent);
         }
@@ -170,12 +170,12 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
             // Handle the camera action
 
         } else if (id == R.id.all_notes) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.homepage_framlayout,allNoteFragment)
+            getSupportFragmentManager().beginTransaction().replace(R.id.homepage_framlayout, allNoteFragment)
                     .commit();
             drawer.closeDrawers();
 
         } else if (id == R.id.note_book) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.homepage_framlayout,noteBookFragment)
+            getSupportFragmentManager().beginTransaction().replace(R.id.homepage_framlayout, noteBookFragment)
                     .commit();
             drawer.closeDrawers();
         } else if (id == R.id.search_notes) {
@@ -200,7 +200,7 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
 
                 break;
 
-           case R.id.main_fab_accessory:
+            case R.id.main_fab_accessory:
 
                 break;
             case R.id.main_fab_chat:
@@ -217,6 +217,7 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
         mFloatingActionMenu.toggle(false);
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -229,9 +230,11 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
             }
             String name = new DateFormat().format("yyyyMMdd_hhmmss", Calendar.getInstance(Locale.CHINA)) + ".jpg";
             Bundle bundle = data.getExtras();
-             bitmap = (Bitmap) bundle.get("data");//获取相机返回的数据,并转为Bitmap图片格式
+            bitmap = (Bitmap) bundle.get("data");//获取相机返回的数据,并转为Bitmap图片格式
 
-
+            bitmapToByte.setImage(bitmap);
+            SingleLiteOrm.getSingleLiteOrm().getLiteOrm().insert(bitmapToByte);
+            Log.d("HomepageAty", "bitmapToByte.getImage():" + bitmapToByte.getImage()+" ");
             FileOutputStream b = null;
             File file = new File("/sdcard/myImage");
             file.mkdirs();//创建文件夹
@@ -254,7 +257,7 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
             }
 
         }
-        bitmapToByte.setImage(bitmap);
+
 
     }
 }

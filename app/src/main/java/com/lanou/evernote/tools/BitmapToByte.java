@@ -3,14 +3,18 @@ package com.lanou.evernote.tools;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.litesuits.orm.db.annotation.Table;
+
 import java.io.ByteArrayOutputStream;
 
 /**
  * Created by dllo on 16/7/21.
  */
+@Table("bitmap.table")
 public class BitmapToByte {
 
     private byte[] photoImage;
+
 
     public Bitmap getImage() {
         if (photoImage == null) {

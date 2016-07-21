@@ -1,5 +1,6 @@
 package com.lanou.evernote.homepage;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -7,6 +8,8 @@ import com.lanou.evernote.R;
 import com.lanou.evernote.base.BaseFragment;
 import com.lanou.evernote.base.ListViewCommonAdapter;
 import com.lanou.evernote.base.ViewHolder;
+import com.lanou.evernote.tools.BitmapToByte;
+import com.lanou.evernote.tools.SingleLiteOrm;
 
 import java.util.ArrayList;
 
@@ -34,6 +37,8 @@ public class NoteBookFragment extends BaseFragment {
         for (int i = 0; i < 30; i++) {
             data.add("lanou" + i);
         }
+        ArrayList<BitmapToByte> datas = SingleLiteOrm.getSingleLiteOrm().getLiteOrm().query(BitmapToByte.class);
+        Log.d("NoteBookFragment", "datas:" + datas.size());
 
         listView.setAdapter(new ListViewCommonAdapter<String>(context,data,R.layout.fragment_notebook_item) {
 
