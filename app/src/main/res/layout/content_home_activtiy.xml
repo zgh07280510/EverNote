@@ -26,7 +26,8 @@
             android:id="@+id/homepage_header_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="哈哈哈"/>
+            android:text="哈哈哈"
+            android:background="#49bc49"/>
 
 
     </com.lanou.evernote.homepage.MultipleStatusView>
@@ -76,5 +77,6 @@
             app:fab_label="手写" />
 
     </com.github.clans.fab.FloatingActionMenu>
+
 
 </RelativeLayout>
