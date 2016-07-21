@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.lanou.evernote.R;
 import com.lanou.evernote.base.BaseActivity;
+import com.lanou.evernote.tools.DisplayUtil;
 
 
 /**
@@ -90,7 +91,7 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
                 btnAccurateSearch.setVisibility(View.VISIBLE);
                 break;
             case R.id.ll_note:
-
+            showPopupWindow();
                 break;
             case R.id.et_search:
                 if (searchEt != null){
@@ -113,14 +114,21 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
         View popupView = LayoutInflater.from(this).inflate(R.layout.accurate_search_popupwindown, null);
         popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, displayMetrics.heightPixels);
         popupWindow.setContentView(popupView);
-        popupWindow.showAsDropDown(llGreen,0,30);
-       //
+        popupWindow.showAsDropDown(btnAccurateSearch);
         btnUseFilter = (Button) popupView.findViewById(R.id.btn_use_filter);
-        btnRemoveFilter = (Button) findViewById(R.id.btn_remove_filter);
-        llNote = (LinearLayout) findViewById(R.id.ll_note);
+        btnRemoveFilter = (Button) popupView.findViewById(R.id.btn_remove_filter);
+        llNote = (LinearLayout)popupView.findViewById(R.id.ll_note);
         btnUseFilter.setOnClickListener(this);
+        llNote.setOnClickListener(this);
     }
 public void  showPopupWindow(){
-
+    WindowManager windowManager = getWindowManager();
+    Display display = windowManager.getDefaultDisplay();
+    DisplayMetrics displayMetrics = new DisplayMetrics();
+    display.getMetrics(displayMetrics);
+    View view= LayoutInflater.from(this).inflate(R.layout.note_popupwindow,null);
+    popupWindow = new PopupWindow(view,displayMetrics.widthPixels/5*4,displayMetrics.heightPixels/4*3);
+    popupWindow.setContentView(view);
+    popupWindow.showAsDropDown(searchEt);
 }
 }
