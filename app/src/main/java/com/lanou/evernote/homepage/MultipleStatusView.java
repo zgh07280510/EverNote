@@ -23,7 +23,7 @@ public class MultipleStatusView extends RelativeLayout {
     private static final int NULL_RESOURCE_ID   = -1;
 
     private View allnotesView;
-    private View mErrorView;
+    private View workChat;
     private View mLoadingView;
     private View mNoNetworkView;
     private View mContentView;
@@ -105,13 +105,13 @@ public class MultipleStatusView extends RelativeLayout {
     /** 显示错误视图 */
     public final void showError() {
         mViewStatus = STATUS_ERROR;
-        if(null == mErrorView){
-            mErrorView = mInflater.inflate(mErrorViewResId, null);
-            mErrorRetryView = mErrorView.findViewById(R.id.error_retry_view);
+        if(null == workChat){
+            workChat = mInflater.inflate(mErrorViewResId, null);
+            mErrorRetryView = workChat.findViewById(R.id.error_retry_view);
             if(null != mOnRetryClickListener && null != mErrorRetryView){
                 mErrorRetryView.setOnClickListener(mOnRetryClickListener);
             }
-            addView(mErrorView,0, mLayoutParams);
+            addView(workChat,0, mLayoutParams);
         }
         showViewByStatus(mViewStatus);
     }
@@ -159,8 +159,8 @@ public class MultipleStatusView extends RelativeLayout {
         if(null != allnotesView){
             allnotesView.setVisibility(viewStatus == STATUS_EMPTY ? View.VISIBLE : View.GONE);
         }
-        if(null != mErrorView){
-            mErrorView.setVisibility(viewStatus == STATUS_ERROR ? View.VISIBLE : View.GONE);
+        if(null != workChat){
+            workChat.setVisibility(viewStatus == STATUS_ERROR ? View.VISIBLE : View.GONE);
         }
         if(null != mNoNetworkView){
             mNoNetworkView.setVisibility(viewStatus == STATUS_NO_NETWORK ? View.VISIBLE : View.GONE);
