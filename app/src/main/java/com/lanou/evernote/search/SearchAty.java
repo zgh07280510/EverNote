@@ -1,15 +1,22 @@
 package com.lanou.evernote.search;
 
+import android.util.DisplayMetrics;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lanou.evernote.R;
 import com.lanou.evernote.base.BaseActivity;
-
 
 
 /**
@@ -17,10 +24,10 @@ import com.lanou.evernote.base.BaseActivity;
  */
 public class SearchAty extends BaseActivity implements View.OnClickListener {
     private ListView searchRecodeListView;
-    private Button btnBack,btnAccurateSearch;
+    private Button btnBack, btnAccurateSearch;
     private EditText searchEt;
     private LinearLayout llSearch;
-
+    private PopupWindow popupWindow;
 
 
     @Override
@@ -36,32 +43,49 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
         searchEt = (EditText) findViewById(R.id.et_search);
         llSearch = (LinearLayout) findViewById(R.id.ll_search);
         btnAccurateSearch = (Button) findViewById(R.id.btn_accurate_search);
+        popupWindow = new PopupWindow();
     }
 
     @Override
     protected void initData() {
-     searchEt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-         @Override
-         public void onFocusChange(View v, boolean hasFocus) {
-             if (!hasFocus){
-                 if ("".equals(searchEt.getText().toString())){
-                  llSearch.setVisibility(View.VISIBLE);
-                 }
-             }else {
-                 llSearch.setVisibility(View.GONE);
-             }
-         }
-     });
+        searchEt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if ("".equals(searchEt.getText().toString())) {
+                        llSearch.setVisibility(View.VISIBLE);
+                    }
+                } else {
+                    llSearch.setVisibility(View.GONE);
+                }
+            }
+        });
         btnAccurateSearch.setOnClickListener(this);
     }
 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_accurate_search:
 
+                Toast.makeText(this, "dainji", Toast.LENGTH_SHORT).show();
+                initPopupWindow();
                 break;
         }
     }
+
+
+    public void initPopupWindow() {
+        WindowManager windowManager = getWindowManager();
+        Display display = windowManager.getDefaultDisplay();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        display.getMetrics(displayMetrics);
+        View popupView = LayoutInflater.from(this).inflate(R.layout.accurate_search_popupwindown, null);
+        popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, displayMetrics.heightPixels);
+        popupWindow.setContentView(popupView);
+       // popupWindow.showAtLocation(, Gravity.TOP,0,60);
+        popupWindow.showAsDropDown(btnAccurateSearch);
+    }
+
 }

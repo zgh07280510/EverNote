@@ -30,7 +30,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".homepage.HomepageAty" />
+
         <activity android:name=".camera.CameraAty" />
+
+        <activity android:name=".search.SearchAty"/>
+
     </application>
 
 </manifest>
