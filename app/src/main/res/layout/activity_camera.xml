@@ -37,7 +37,6 @@
 
         <ImageView
             android:id="@+id/menu_cam"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -61,7 +60,12 @@
             android:layout_toRightOf="@id/share_enabled"
             android:src="@mipmap/ic_action_more" />
     </RelativeLayout>
-
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:textSize="30sp"
+        android:text="笔记位于中国"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <EditText
         android:id="@+id/note_title"
         android:layout_width="match_parent"
