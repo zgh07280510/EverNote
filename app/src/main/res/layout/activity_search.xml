@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:textColorLink="@android:color/white"
-      />
+      android:singleLine="true"/>
         <ImageView
             android:id="@+id/iv_clear_search"
             android:layout_width="wrap_content"
