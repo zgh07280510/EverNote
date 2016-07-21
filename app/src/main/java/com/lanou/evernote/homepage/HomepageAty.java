@@ -9,7 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
@@ -37,6 +39,7 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
     private FloatingActionButton mRemindFab;
     private ListView listView;
     private ArrayList<String> data;
+    private TextView textView;
 
 
 
@@ -53,7 +56,7 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
     @Override
     protected void initView() {
         listView = (ListView) findViewById(R.id.list_view);
-
+        textView = (TextView) findViewById(R.id.homepage_header_tv);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -73,7 +76,7 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
 
 
         multipleStatusView.setOnRetryClickListener(onRetryClickListener);
-       // multipleStatusView.showLoading();
+
 
     }
     private final View.OnClickListener onRetryClickListener = new View.OnClickListener() {
@@ -94,6 +97,26 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
             @Override
             public void convert(ViewHolder holder, String s) {
                 holder.setText(R.id.text_,s);
+            }
+        });
+
+        View header = View.inflate(this,R.layout.home_list_header,null);
+        listView.addHeaderView(header);
+        listView.addHeaderView(View.inflate(this,R.layout.homepage_action,null));
+
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if (firstVisibleItem >= 1) {
+                    textView.setVisibility(View.VISIBLE);
+                } else {
+                    textView.setVisibility(View.GONE);
+                }
             }
         });
 
