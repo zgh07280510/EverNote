@@ -17,14 +17,13 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.lanou.evernote.R;
 import com.lanou.evernote.base.BaseActivity;
-<<<<<<< HEAD
-import com.lanou.evernote.search.SearchAty;
-=======
+
 import com.lanou.evernote.base.ListViewCommonAdapter;
 import com.lanou.evernote.base.ViewHolder;
+import com.lanou.evernote.search.SearchAty;
 
 import java.util.ArrayList;
->>>>>>> feature/homepage
+
 
 /**
  * Created by zouguohua on 16/7/19.
@@ -40,13 +39,11 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
     private FloatingActionButton mChatFab;
     private FloatingActionButton mWriteFab;
     private FloatingActionButton mRemindFab;
-<<<<<<< HEAD
-=======
     private ListView listView;
     private ArrayList<String> data;
 
 
->>>>>>> feature/homepage
+
 
 
 
@@ -65,10 +62,7 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-<<<<<<< HEAD
-        toolbar.setNavigationIcon(R.mipmap.ic_action_more);
-=======
->>>>>>> feature/homepage
+
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         multipleStatusView = (MultipleStatusView) findViewById(R.id.main_multiplestatusview);
         mFloatingActionMenu = (FloatingActionMenu) findViewById(R.id.main_fab_menu);
@@ -97,8 +91,6 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
 
     @Override
     protected void initData() {
-<<<<<<< HEAD
-=======
         data = new ArrayList<>();
         for (int i = 0; i < 80; i++) {
             data.add("halou"+i);
@@ -112,7 +104,7 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
         });
 
 
->>>>>>> feature/homepage
+
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
