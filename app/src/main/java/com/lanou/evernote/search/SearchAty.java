@@ -84,7 +84,6 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
         View popupView = LayoutInflater.from(this).inflate(R.layout.accurate_search_popupwindown, null);
         popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, displayMetrics.heightPixels);
         popupWindow.setContentView(popupView);
-       // popupWindow.showAtLocation(, Gravity.TOP,0,60);
         popupWindow.showAsDropDown(btnAccurateSearch);
     }
 
