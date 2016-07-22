@@ -2,14 +2,11 @@ package com.lanou.evernote.homepage;
 
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.location.Location;
-import android.support.v7.widget.SearchView;
-import android.util.DisplayMetrics;
+
 
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
+
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,18 +16,18 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 
 import com.lanou.evernote.R;
 import com.lanou.evernote.base.BaseFragment;
 import com.lanou.evernote.base.ListViewCommonAdapter;
-import com.lanou.evernote.base.MyApplication;
+
 import com.lanou.evernote.base.ViewHolder;
-import com.lanou.evernote.tools.BitmapToByte;
+
 import com.lanou.evernote.tools.DisplayUtil;
-import com.lanou.evernote.tools.LayoutParamsUtil;
-import com.lanou.evernote.tools.SingleLiteOrm;
+
 
 import java.util.ArrayList;
 
