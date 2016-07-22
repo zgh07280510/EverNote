@@ -114,7 +114,7 @@ public class NoteBookFragment extends BaseFragment implements View.OnClickListen
    public void popuWindows(){
 
         View view= LayoutInflater.from(context).inflate(R.layout.note_book_popu, null);
-       popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, false) {
+       popupWindow = new PopupWindow(view, DisplayUtil.px2dip(context,4850), ViewGroup.LayoutParams.WRAP_CONTENT, false) {
            @Override
            public void dismiss() {
                alphaView.setVisibility(View.GONE);
@@ -129,7 +129,7 @@ public class NoteBookFragment extends BaseFragment implements View.OnClickListen
        popupWindow.setBackgroundDrawable(new BitmapDrawable());
        alphaView.setVisibility(View.VISIBLE);
        popupWindow.setInputMethodMode(popupWindow.INPUT_METHOD_NEEDED);
-       popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
+       popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, DisplayUtil.px2dip(context,730));
 
    }
 }

@@ -105,7 +105,7 @@ public class RegisterFragment extends BaseFragment implements LoginAndRegistterC
 
     @Override
     public void registerError(String ErrorMessage) {
-
+        progressDialog.dismiss();
         Toast.makeText(MyApplication.getContext(), "注册失败", Toast.LENGTH_SHORT).show();
 
     }
