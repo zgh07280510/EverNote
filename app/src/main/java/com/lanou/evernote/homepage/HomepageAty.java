@@ -2,7 +2,10 @@ package com.lanou.evernote.homepage;
 
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
@@ -60,6 +63,8 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
     private NoteBookFragment noteBookFragment;
     private Bitmap bitmap;
     private BitmapToByte bitmapToByte;
+    private SearchBrodcastRecever recever;
+    private ReturnBrodcastRecever reRecever;
 
     @Override
     public int setLayout() {
@@ -74,7 +79,8 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        recever = new SearchBrodcastRecever();
+        reRecever = new ReturnBrodcastRecever();
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         mFloatingActionMenu = (FloatingActionMenu) findViewById(R.id.main_fab_menu);
         mCameraFab = (FloatingActionButton) findViewById(R.id.main_fab_camrea);
@@ -104,6 +110,11 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        IntentFilter filter = new IntentFilter("com.lanou.evernote.notebook");
+        registerReceiver(recever,filter);
+        IntentFilter reFliter = new IntentFilter("com.lanou.evernote.notebook.return");
+        registerReceiver(reRecever,reFliter);
+
 
     }
 
@@ -259,5 +270,27 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
         }
 
 
+    }
+    class SearchBrodcastRecever extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            toolbar.setVisibility(View.GONE);
+            Log.d("MybrodcastRecever", "我收到了广播");
+        }
+    }
+    class ReturnBrodcastRecever extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            toolbar.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(recever);
+        unregisterReceiver(reRecever);
     }
 }
