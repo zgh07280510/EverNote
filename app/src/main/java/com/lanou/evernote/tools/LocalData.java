@@ -17,6 +17,10 @@ public class LocalData {
         this.etContent = etContent;
     }
 
+    public LocalData() {
+
+    }
+
     public String getEtContent() {
         return etContent;
     }
