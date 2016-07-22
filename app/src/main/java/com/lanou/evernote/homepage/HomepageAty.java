@@ -244,7 +244,7 @@ public class HomepageAty extends BaseActivity implements NavigationView.OnNaviga
             bitmap = (Bitmap) bundle.get("data");//获取相机返回的数据,并转为Bitmap图片格式
 
             bitmapToByte.setImage(bitmap);
-            SingleLiteOrm.getSingleLiteOrm().getLiteOrm().insert(bitmapToByte);
+          //  SingleLiteOrm.getSingleLiteOrm().getLiteOrm().insert(bitmapToByte);
             Log.d("HomepageAty", "bitmapToByte.getImage():" + bitmapToByte.getImage()+" ");
             FileOutputStream b = null;
             File file = new File("/sdcard/myImage");

@@ -49,8 +49,8 @@ public class NoteBookFragment extends BaseFragment implements View.OnClickListen
         for (int i = 0; i < 30; i++) {
             data.add("lanou" + i);
         }
-        ArrayList<BitmapToByte> datas = SingleLiteOrm.getSingleLiteOrm().getLiteOrm().query(BitmapToByte.class);
-        Log.d("NoteBookFragment", "datas:" + datas.size());
+     //   ArrayList<BitmapToByte> datas = SingleLiteOrm.getSingleLiteOrm().getLiteOrm().query(BitmapToByte.class);
+     //   Log.d("NoteBookFragment", "datas:" + datas.size());
 
         listView.setAdapter(new ListViewCommonAdapter<String>(context,data,R.layout.fragment_notebook_item) {
 
