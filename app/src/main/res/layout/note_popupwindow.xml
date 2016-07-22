@@ -6,10 +6,10 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tv_factor_pop"
         android:layout_width="match_parent"
         android:layout_height="@dimen/forty_dp"
         android:layout_gravity="center_vertical"
-        android:text="@string/note"
         android:textColor="@color/colorLoginTabLayout"
         android:textSize="@dimen/eighteen_sp"
         android:background="@color/white"
@@ -34,6 +34,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/btn_note_pop_clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -41,6 +42,7 @@
             android:text="@string/clear" />
 
         <Button
+            android:id="@+id/btn_note_pop_use"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

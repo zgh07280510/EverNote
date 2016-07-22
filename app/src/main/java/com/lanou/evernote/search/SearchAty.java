@@ -2,15 +2,13 @@ package com.lanou.evernote.search;
 
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -39,10 +37,11 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
     private SearchView svSearch;
     private LinearLayout llGreen;
     private PopupWindow popupWindow;
-    private ArrayList<LocalData> datas;
-    private String svContent;
-
-
+    private ArrayList<LocalData> searchHistory;
+    private LocalData localData;
+    private TextView tvFactor;
+    private View view;
+    private ListViewCommonAdapter adapter;
 
     @Override
     public int setLayout() {
@@ -56,13 +55,28 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
         searchRecodeListView = (ListView) findViewById(R.id.search_listView);
         btnBack = (Button) findViewById(R.id.btn_search_back);
         svSearch = (SearchView) findViewById(R.id.sv_search);
-         btnAccurateSearch = (Button) findViewById(R.id.btn_accurate_search);
+        btnAccurateSearch = (Button) findViewById(R.id.btn_accurate_search);
         llGreen = (LinearLayout) findViewById(R.id.ll_search_green);
         popupWindow = new PopupWindow();
+
     }
 
     @Override
     protected void initData() {
+        view = LayoutInflater.from(this).inflate(R.layout.note_popupwindow, null);
+        tvFactor = (TextView) view.findViewById(R.id.tv_factor_pop);
+
+        searchHistory = new ArrayList<>();
+        searchHistory = SingleLiteOrm.getSingleLiteOrm().getLiteOrm().query(LocalData.class);
+
+        adapter = new ListViewCommonAdapter<LocalData>(this, searchHistory, R.layout.history_item_list) {
+            @Override
+            public void convert(ViewHolder holder, LocalData localData) {
+                holder.setText(R.id.tv_history, localData.getEtContent());
+            }
+        };
+
+
         searchRecodeListView.setTextFilterEnabled(true);
         svSearch.setIconifiedByDefault(false);
         svSearch.setQueryHint("搜索笔记");
@@ -71,36 +85,46 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
         btnAccurateSearch.setOnClickListener(this);
         btnBack.setOnClickListener(this);
         svSearch.setOnClickListener(this);
-        searchRecodeListView.setAdapter(new ListViewCommonAdapter<LocalData>(this,datas, R.layout.history_item_list) {
 
-            @Override
-            public void convert(ViewHolder holder, LocalData localData) {
-
-            }
-
-            
-        });
         svSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
             public boolean onQueryTextSubmit(String query) {
                 Toast.makeText(SearchAty.this, "您的选择是" + query, Toast.LENGTH_SHORT).show();
-                return false;
+                localData = new LocalData();
+                localData.setEtContent(query);
+                Log.d("SearchAty", query);
+
+                //查询数据库里是否有这条记录
+                QueryBuilder<LocalData> queryBuilder = new QueryBuilder<>(LocalData.class);
+                queryBuilder.whereEquals("etContent", localData.getEtContent());
+                if (SingleLiteOrm.getSingleLiteOrm().getLiteOrm().query(queryBuilder).size() == 0) {
+                    SingleLiteOrm.getSingleLiteOrm().getLiteOrm().insert(localData);
+                    searchHistory = SingleLiteOrm.getSingleLiteOrm().getLiteOrm().query(LocalData.class);
+                    adapter.addSingleData(searchHistory.get(searchHistory.size() - 1), searchHistory.size() + 1);
+                }
+
+
+
+
+                return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (TextUtils.isEmpty(newText)){
+                if (TextUtils.isEmpty(newText)) {
                     searchRecodeListView.clearTextFilter();
-                }else {
+                    btnAccurateSearch.setVisibility(View.VISIBLE);
+                } else {
                     searchRecodeListView.setFilterText(newText);
-        SingleLiteOrm.getSingleLiteOrm().getLiteOrm().insert(newText);
-//                   QueryBuilder<>()
-//                    SingleLiteOrm.getSingleLiteOrm().getLiteOrm().query("");
+                    btnAccurateSearch.setVisibility(View.GONE);
+
                 }
                 return true;
             }
         });
+
+        searchRecodeListView.setAdapter(adapter);
     }
 
     @Override
@@ -120,9 +144,40 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.ll_note:
                 showPopupWindow();
-                break;
-            case R.id.sv_search:
 
+                tvFactor.setText("笔记本");
+
+                break;
+
+            case R.id.ll_label:
+                tvFactor.setText("标签");
+                showPopupWindow();
+                break;
+            case R.id.ll_date:
+                tvFactor.setText("日期");
+                showPopupWindow();
+                break;
+            case R.id.ll_address:
+                tvFactor.setText("地点");
+                showPopupWindow();
+                break;
+            case R.id.ll_source_type:
+                tvFactor.setText("来源和类型");
+                showPopupWindow();
+                break;
+            case R.id.ll_attachment:
+                tvFactor.setText("附件");
+                showPopupWindow();
+                break;
+            case R.id.ll_todo:
+                tvFactor.setText("待办事项");
+                showPopupWindow();
+                break;
+            case R.id.btn_note_pop_clear:
+                popupWindow.dismiss();
+                break;
+            case R.id.btn_note_pop_use:
+                popupWindow.dismiss();
                 break;
         }
     }
@@ -130,7 +185,7 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
 
     public void initPopupWindow() {
         Button btnUseFilter, btnRemoveFilter;
-        LinearLayout llNote;
+        LinearLayout llNote, llLabel, llDate, llAddress, llSource, llAttachment, llTodo;
         WindowManager windowManager = getWindowManager();
         Display display = windowManager.getDefaultDisplay();
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -142,18 +197,37 @@ public class SearchAty extends BaseActivity implements View.OnClickListener {
         btnUseFilter = (Button) popupView.findViewById(R.id.btn_use_filter);
         btnRemoveFilter = (Button) popupView.findViewById(R.id.btn_remove_filter);
         llNote = (LinearLayout) popupView.findViewById(R.id.ll_note);
+        llLabel = (LinearLayout) popupView.findViewById(R.id.ll_label);
+        llDate = (LinearLayout) popupView.findViewById(R.id.ll_date);
+        llAddress = (LinearLayout) popupView.findViewById(R.id.ll_address);
+        llSource = (LinearLayout) popupView.findViewById(R.id.ll_source_type);
+        llAttachment = (LinearLayout) popupView.findViewById(R.id.ll_attachment);
+        llTodo = (LinearLayout) popupView.findViewById(R.id.ll_todo);
         btnUseFilter.setOnClickListener(this);
         llNote.setOnClickListener(this);
+        llLabel.setOnClickListener(this);
+        llDate.setOnClickListener(this);
+        llAddress.setOnClickListener(this);
+        llSource.setOnClickListener(this);
+        llAttachment.setOnClickListener(this);
+        llTodo.setOnClickListener(this);
     }
 
     public void showPopupWindow() {
-        WindowManager windowManager = getWindowManager();
-        Display display = windowManager.getDefaultDisplay();
+        WindowManager noteWindowManager = getWindowManager();
+        Display display = noteWindowManager.getDefaultDisplay();
         DisplayMetrics displayMetrics = new DisplayMetrics();
         display.getMetrics(displayMetrics);
-        View view = LayoutInflater.from(this).inflate(R.layout.note_popupwindow, null);
+
         popupWindow = new PopupWindow(view, displayMetrics.widthPixels / 5 * 4, displayMetrics.heightPixels / 4 * 3);
         popupWindow.setContentView(view);
         popupWindow.showAsDropDown(svSearch);
+        Button btnClear = (Button) view.findViewById(R.id.btn_note_pop_clear);
+        Button btnUse = (Button) view.findViewById(R.id.btn_note_pop_use);
+        ListView listView = (ListView) view.findViewById(R.id.factor_listView);
+
+        btnClear.setOnClickListener(this);
+        btnUse.setOnClickListener(this);
+
     }
 }

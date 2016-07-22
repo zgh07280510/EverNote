@@ -30,7 +30,7 @@ public abstract class ListViewCommonAdapter<T> extends BaseAdapter {
         this.mDatas = mDatas;
         notifyDataSetChanged();
     }
-public void addSingleData(T t,int pos){
+    public void addSingleData(T t,int pos){
     if (pos > mDatas.size()){
         pos = mDatas.size();
     }
