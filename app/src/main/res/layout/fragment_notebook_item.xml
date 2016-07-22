@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/fragment_notebook_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <ImageView
-        android:id="@+id/image_"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/fragment_notebook_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="notebook"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/note_book_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0条笔记"
+            android:layout_below="@id/fragment_notebook_tv"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3dp"/>
+
+        <ImageView
+            android:id="@+id/note_book_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
 
 </LinearLayout>
