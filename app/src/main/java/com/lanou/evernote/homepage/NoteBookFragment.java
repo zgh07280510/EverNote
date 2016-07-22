@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 
 import com.lanou.evernote.R;
@@ -28,6 +29,7 @@ import com.lanou.evernote.base.MyApplication;
 import com.lanou.evernote.base.ViewHolder;
 import com.lanou.evernote.tools.BitmapToByte;
 import com.lanou.evernote.tools.DisplayUtil;
+import com.lanou.evernote.tools.LayoutParamsUtil;
 import com.lanou.evernote.tools.SingleLiteOrm;
 
 import java.util.ArrayList;
@@ -44,7 +46,8 @@ public class NoteBookFragment extends BaseFragment implements View.OnClickListen
     private ImageView returnIv;
     private RelativeLayout relativeLayout;
     private PopupWindow popupWindow;
-    private int from = 0;
+    private TextView alphaView;
+
 
 
     @Override
@@ -58,6 +61,7 @@ public class NoteBookFragment extends BaseFragment implements View.OnClickListen
         searchView = (SearchView) view.findViewById(R.id.note_book_search);
         returnIv = (ImageView) view.findViewById(R.id.notebook_return);
         relativeLayout = (RelativeLayout) view.findViewById(R.id.notebook_relayout);
+        alphaView = (TextView) view.findViewById(R.id.note_book_tv);
 
     }
 
@@ -67,7 +71,7 @@ public class NoteBookFragment extends BaseFragment implements View.OnClickListen
         for (int i = 0; i < 30; i++) {
             data.add("lanou" + i);
         }
-        ArrayList<BitmapToByte> datas = SingleLiteOrm.getSingleLiteOrm().getLiteOrm().query(BitmapToByte.class);
+    //    ArrayList<BitmapToByte> datas = SingleLiteOrm.getSingleLiteOrm().getLiteOrm().query(BitmapToByte.class);
 
 
         listView.setAdapter(new ListViewCommonAdapter<String>(context,data,R.layout.fragment_notebook_item) {
@@ -79,8 +83,7 @@ public class NoteBookFragment extends BaseFragment implements View.OnClickListen
                 holder.getView(R.id.note_book_iv).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-                        initPopupWindow();
+                        popuWindows();
                     }
                 });
 
@@ -108,44 +111,25 @@ public class NoteBookFragment extends BaseFragment implements View.OnClickListen
         }
 
     }
-    protected void initPopupWindow() {
-        View popuView = LayoutInflater.from(context).inflate(R.layout.note_book_popu, null);
+   public void popuWindows(){
 
+        View view= LayoutInflater.from(context).inflate(R.layout.note_book_popu, null);
+       popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, false) {
+           @Override
+           public void dismiss() {
+               alphaView.setVisibility(View.GONE);
+               super.dismiss();
 
-        popupWindow = new PopupWindow(popuView, ViewGroup.LayoutParams.MATCH_PARENT, DisplayUtil.px2dip(context,1200), true);
+           }
+       };
+       //外部获得焦点
+       popupWindow.setOutsideTouchable(true);
+       //内部获得焦点
+       popupWindow.setFocusable(true);
+       popupWindow.setBackgroundDrawable(new BitmapDrawable());
+       alphaView.setVisibility(View.VISIBLE);
+       popupWindow.setInputMethodMode(popupWindow.INPUT_METHOD_NEEDED);
+       popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
 
-        popupWindow.showAtLocation(popuView, Gravity.BOTTOM, 0, 0);
-        popupWindow.setOutsideTouchable(true);
-        //内部获得焦点
-        popupWindow.setFocusable(true);
-        popupWindow.setBackgroundDrawable(new BitmapDrawable());
-        popupWindow.setInputMethodMode(popupWindow.INPUT_METHOD_NEEDED);
-
-
-
-        //关闭事件
-        popupWindow.setOnDismissListener(new popupDismissListener());
-
-        popuView.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-
-                return false;
-            }
-        });
-
-
-    }
-
-    class popupDismissListener implements PopupWindow.OnDismissListener {
-        @Override
-        public void onDismiss() {
-
-        }
-
-    }
-
-
+   }
 }
