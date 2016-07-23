@@ -82,12 +82,10 @@ public class CameraAty extends BaseActivity implements View.OnClickListener {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 intent.addCategory("android.intent.category.DEFAULT");
                 startActivityForResult(intent, 1);
-
                 break;
             case R.id.watch_iv:
                 watchView = LayoutInflater.from(this).inflate(R.layout.item_watchpop, null);
                 PopupWindow popupWindow = new PopupWindow(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
                 //外部获得焦点
                 popupWindow.setOutsideTouchable(true);
                 //内部获得焦点
@@ -135,8 +133,6 @@ public class CameraAty extends BaseActivity implements View.OnClickListener {
             public void dismiss() {
                 alphaView.setVisibility(View.GONE);
                 super.dismiss();
-
-
             }
         };
         //外部获得焦点
@@ -147,8 +143,6 @@ public class CameraAty extends BaseActivity implements View.OnClickListener {
         alphaView.setVisibility(View.VISIBLE);
         popupWindow.setInputMethodMode(popupWindow.INPUT_METHOD_NEEDED);
         popupWindow.showAtLocation(cameraLv, Gravity.BOTTOM, 0, 0);
-
-
     }
 
     @Override
@@ -170,7 +164,6 @@ public class CameraAty extends BaseActivity implements View.OnClickListener {
             try {
                 b = new FileOutputStream(fileName);
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, b);//将流写入文件
-
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } finally {
@@ -185,4 +178,5 @@ public class CameraAty extends BaseActivity implements View.OnClickListener {
             showRecordIv.setImageBitmap(bitmap);
         }
     }
+
 }
